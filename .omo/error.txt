@@ -1,0 +1,47 @@
+1. PS D:\coding\github c\epsilongame> unity command get_component_properties --target "CM vcam1" --type CinemachineCamera
+🎮 Unity 에디터에서 'get_component_properties' 실행 중...
+🔗 127.0.0.1:7800의 Unity 에디터에 연결하는 중
+📋 매개변수: {"target":"CM vcam1","type":"CinemachineCamera"}
+✅ 명령 'get_component_properties'이(가) 성공적으로 실행되었습니다
+📤 결과:
+{
+  "component": {
+    "globalId": "GlobalObjectId_V1-2-7443be027207dfa4482447410813478e-1614508067-0",
+    "assetPath": null,
+    "guid": null,
+    "fileId": null,
+    "instanceId": -2170,
+    "hierarchyPath": "/CM vcam1",
+    "type": "CinemachineCamera"
+  },
+  "properties": {
+    "Priority": "<unsupported:Generic>",
+    "OutputChannel": "Default",
+    "StandbyUpdate": "RoundRobin",
+    "Target": "<unsupported:Generic>",
+    "Lens": "<unsupported:Generic>",
+    "BlendHint": 0
+  }
+}
+
+A new version of the Unity CLI is available: 1.0.0-beta.6 → [1m1.0.0-beta.9[0m
+[2mRun [36munity upgrade[39m to update. Disable this check with [36munity config update-check off[39m.[0m
+PS D:\coding\github c\epsilongame> unity command add_component --target "CM vcam1" --type CinemachinePositionComposer
+[2K🎮 Unity 에디터에서 'add_component' 실행 중...tor 작업 실행 중...
+🔗 127.0.0.1:7800의 Unity 에디터에 연결하는 중
+📋 매개변수: {"target":"CM vcam1","type":"CinemachinePositionComposer"}
+✅ 명령 'add_component'이(가) 성공적으로 실행되었습니다
+📤 결과:
+{
+  "globalId": "GlobalObjectId_V1-2-7443be027207dfa4482447410813478e-1614508068-0",
+  "assetPath": null,
+  "guid": null,
+  "fileId": null,
+  "instanceId": -2176,
+  "hierarchyPath": "/CM vcam1",
+  "type": "CinemachinePositionComposer"
+}
+
+A new version of the Unity CLI is available: 1.0.0-beta.6 → [1m1.0.0-beta.9[0m
+[2mRun [36munity upgrade[39m to update. Disable this check with [36munity config update-check off[39m.[0m
+PS D:\coding\github c\epsilongame>

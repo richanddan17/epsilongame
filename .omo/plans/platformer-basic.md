@@ -1,5 +1,85 @@
 # platformer-basic - Work Plan
 
+## 📌 진행사항 (2026-09-16 최종 기준)
+
+### 완료 ✅
+- **Todo 0-1**: 불필요 패키지 6개 제거 (ai.assistant, ai.inference, multiplayer.center, visualscripting, timeline, collab-proxy)
+- **Todo 1**: Cinemachine 3.1.7 설치
+- **Todo 2**: 2D 물리 설정 (Gravity Y=-20, Contact Offset 0.01, Auto Sync Transforms)
+- **Todo 3**: 기본 Scene 구조 (Assets/Scenes/Main.unity)
+- **Todo 0-2 (컴파일 부분)**: `Assembly-CSharp.dll` 생성 확인 — 컴파일 성공
+- **Todo 4**: Player Prefab 생성 — `Assets/Prefabs/Player.prefab`
+  - SpriteRenderer(파랑), Rigidbody2D(Gravity 3, **Interpolate**, Continuous, FreezeRotation), BoxCollider2D, tag=Player
+  - groundCheck 자식 포함 (위치 0,-0.5,0)
+- **Todo 5**: PlayerController.cs 존재 확인 — 요구사항 충족 (moveSpeed 8, jumpForce 14, maxJumps 2, Update/FixedUpdate 분리)
+- **Todo 0-2 (부착 부분)**: PlayerController 부착 + groundCheck 참조 할당
+- **Todo 0-3**: Rigidbody2D 설정 검증 (Interpolate/Continuous/Gravity3) ✅
+- **Unity 스킬 10개 설치**: `.opencode/skills/` (unity-cli, unity-package-management, 2d-pixel-perfect, tilemap-* 3종, sprite-editor, manage-sprite-atlas, urp-postprocessing, generate-editor-search-query)
+- **Todo 7 (2026-09-16)**: CinemachineBrain 설정 — Main Camera(instanceId 41870)에 추가, UpdateMethod=LateUpdate, BlendUpdateMethod=LateUpdate, Camera orthographic=true size=5.4 ✅ (DefaultBlend만 Inspector 확인 남음)
+- **Todo 8 (2026-09-16)**: CM vcam1 생성 (instanceId -2158) + CinemachineCamera(-2170) + CinemachinePositionComposer(-2176) — Follow=Player, Damping(0.3,1.5), DeadZone(0.1,0.15), Lookahead 0.3/Smoothing 15, Lens=5.4 ✅
+- **Todo 9 (2026-09-16)**: LevelBounds(PolygonCollider2D 40×10 rect, isTrigger) + CinemachineConfiner2D(BoundingShape2D→LevelBounds, Damping=1.0, OversizeWindow.Enabled=True, MaxWindowSize=5.4) ✅
+  - 학습: `eval_file`이 inline `eval`보다 안정적, eval 코드는 메서드 본문만, Cinemachine 타입은 리플렉션으로 검색
+- **Todo 10 (2026-09-16)**: Zone1(BoxCollider2D isTrigger 40×10) + CameraZone(zoneCamera→CM vcam1, priorityEnabled=10, priorityDisabled=0) ✅
+  - **이슈 수정**: CameraZone.cs `Priority`는 float가 아닌 `PrioritySettings` 구조체 → `zoneCamera.Priority.Value = (int)priorityEnabled/Disabled`로 2줄 수정 후 컴파일 성공
+- **Player→Prefab 인스턴스 교체 (2026-09-16, bg_9c5a94d1) ✅**: Scene Player를 `PrefabUtility.SaveAsPrefabAsset`로 prefab 인스턴스화 (PrefabInstanceStatus=Connected, 위치 (0,3,0) 유지, prefab 자산에 PlayerController 포함) + Ground 레이어 생성 (index 3, 중복 정리 완료) + groundLayer=8 할당 — **19/19 검증 통과**, 씬 저장 완료
+- **Todo 11 (2026-09-16, bg_aa79d171) ✅**: 기본 레벨 생성
+  - LevelBounds world bounds: min(-10,0) max(30,10), 40×10
+  - Floor(0,-0.5) 20×1 top edge y=0 + WallLeft(-9.75,4)/WallRight(10.25,4) 0.5×8 + Platform A(3,2.5) B(-4,4) C(6.5,5.5) D(0.5,7) 3×0.5 — 전부 Ground 레이어, isTrigger=false, gray
+  - Quad primitive 방식 (MeshCollider 제거 + BoxCollider2D + Sprites/Default material), 씬 저장 완료
+- **Todo 12 (2026-09-16, bg_899ce247) ✅**: 레벨 장식
+  - Main Camera: clearFlags Skybox→**SolidColor** + backgroundColor **RGBA(0.53, 0.81, 0.98)** 밝은 하늘색 (clearFlags 변경이 배경색 표시에 필수였음)
+  - 장식 6개: Cloud_1..3 (z=-1, 알파 0.85 흰색) + Hill_1..3 (z=-1, 청록 회색) — sortingOrder=-20, 콜라이더 없음, LevelBounds 내부, 씬 저장 완료
+- **Todo 13 (2026-09-16, bg_89f9aebe) ✅**: 최종 통합 테스트 — **카메라 5/5 PASS**
+  - DefaultBlend.Time 2→**1** 수정 (SerializedObject, 경로 `DefaultBlend.Time` — `m_Time` 아님), 씬 YAML 검증 (Player SceneRoots 포함, camera size 5.4, vcam1/LevelBounds/Zone1 존재)
+  - Play Mode 5단계 테스트 (TestCameraValidator): `PASS_IDLE/MOVE_RIGHT/JUMP/CONFINER_R/CONFINER_L` 전부 **YES**, TOTAL 5/5
+  - 테스트 중 발견·수정: Player.prefab `m_Constraints: 4`(FreezeRotation) 추가, Game view 종횡비 16:9(1920×1080) 설정, 씬 중복 PlayerController 제거, Player 위치 (0, 0.5, 0) 정렬
+  - 임시 스크립트(TestCameraValidator.cs, TempFollowProbe.cs) 삭제 완료, 씬 저장 완료 (78,182 bytes)
+
+### 진행 중 🔄
+- **없음** — 카메라 시스템 Wave 3~4 전부 완료. 아래 ⚠️ 남은 리스크를 인간 팀이 판단.
+
+### ⚠️ 씬 파일 동기화 문제 (2026-09-16 발견 → Todo 13에서 해결)
+`Main.unity`(440줄)가 라이브 Editor 상태와 심각하게 동기화 안 됨:
+- **CM vcam1, LevelBounds, Zone1** → 씬 YAML에 없음 (라이브 Editor에만 존재, 미저장) → **Todo 11~13에서 여러 차례 SaveScene → YAML에 전부 반영됨 확인** ✅
+- **SceneRoots에 Player 누락** — PrefabInstance(fileID 8368372036711421826) 존재하지만 root 목록에서 빠짐 → **Todo 13 Phase 0에서 SceneRoots에 포함 확인 (line 2844)** ✅
+- **Main Camera orthographic size = 5** (목표 5.4) → **5.4 확인 ✅**
+- **DefaultBlend Time = 2** (목표 1 sec) → **1로 수정 완료 ✅**
+- **해결 방법**: `EditorSceneManager.SaveScene` 반복 호출로 라이브 상태를 디스크에 반영 (Todo 11, 12, 13에서 각각 저장, 최종 78,182 bytes)
+
+### Todo 11 레벨 설계 (2026-09-16 사전 준비)
+기준: Player 시작 위치 ≈ (0, 3), LevelBounds 40×10 (중심 미확정 — 태스크에서 확인 필요), camera size 5.4 (가로 약 19.2 @16:9)
+- **바닥**: y=0, x=-10 ~ +10 (20타일, 1유닛씩), BoxCollider2D + SpriteRenderer(회색), **Ground 레이어** (bg_9c5a94d1에서 생성 예정)
+- **벽**: 좌(-10, y=0~2), 우(+10, y=0~2) — LevelBounds 안쪽에 배치
+- **플랫폼 3~4개**: 높이 다양화 (예: y=3, y=4.5, y=6), 점프력 14 / 중력 -20 기준 도달 가능 범위 내
+- **첫 플랫폼 배치 주의**: Player는 y=3 시작 → 바닥(y=0)까지 낙하 후 플랫폼 점프 진행
+- 충돌: 각 타일/플랫폼에 BoxCollider2D(isTrigger=false) — Player가 밟을 수 있어야 함
+- SceneRoots에 Player 복원 필요 (씬 저장 시 root 누락 문제 해결)
+
+### Todo 12~13 설계 (2026-09-16 사전 준비)
+- **Todo 12 (장식)**:
+  - Camera Background: 현재 (0.192, 0.302, 0.475) — 기본 파랑 유지 또는 밝은 하늘색으로 변경
+  - 타일 스프라이트: SpriteRenderer 기본 사각형(흰색/회색)으로 통일 — 아트 에셋 없음 → 범위 외 (Todo 6과 동일하게 스프라이트 확보 후 진행)
+  - 장식 오브젝트: 배경용 단색 사각형 몇 개 (범위 최소화)
+- **Todo 13 (통합 테스트)** — 실행 순서:
+  1. `unity command save_scene`으로 라이브 상태 저장 (씬 동기화 문제 해결 — CM vcam1/LevelBounds/Zone1/Player 포함)
+  2. 저장 후 Main.unity YAML 검증: SceneRoots에 Player 포함 여부, 카메라 size 5→5.4 확인
+  3. DefaultBlend Time 2→1 수정 (계획 기준)
+  4. Play Mode 테스트: `unity command play` 또는 Editor 연결로 재생 — Player 이동/점프, 카메라 끊김 확인
+  5. 카메라 검증 항목: Follow 부드러움, 점프 바운스 없음, Confiner 경계 밖 안 나감
+
+### 대기 ⏳
+- **Todo 6 (Animator)**: **지연 결정** (2026-09-14 사용자 승인) — 스프라이트 확보 후 진행
+- **카메라 Y 추적 튜닝 (권장, 인간 판단 필요)**: 동작에 문제 없음(5/5 PASS)이나, PositionComposer `DeadZone Size y=0.15`(화면 높이 10.8 기준 ±0.81) + `Damping y=1.5`로 **데드존 내 점진 이동 시 카메라가 무시** — 점프 추적이 느려 이단점프 플랫포머에서 플레이어가 화면 밖으로 나갈 위험. 후보: DeadZone y 0.15→0.05, Damping y 1.5→0.5 후 수동 플레이 테스트
+- **스프라이트/사운드 보강**: 아트 에셋 없음 — Todo 6과 동일하게 에셋 확보 후 진행 (레벨 타일 + 장식 스프라이트)
+
+### 중요 작업 메모 ⚠️
+- ~~Scene의 Player는 아직 Prefab 인스턴스로 전환 전~~ → **완료**: Prefab 인스턴스화 (Connected) + Player 위치 (0, 0.5, 0)
+- ~~groundLayer 미설정~~ → **완료**: Ground 레이어 index 3, groundLayer=8
+- Unity MCP 대신 **unity-cli 스킬 경로**로 진행 (MCP 블로커 우회, 연결 상태 ready 확인됨)
+- **eval_file 핵심 학습**: 5000ms 메인스레드 타임아웃은 CLI `--timeout`으로 조절 불가 → 장시간 작업은 `--detach` + `unity job wait`로 실행 (Play Mode 진입, AssetDatabase.Refresh, SaveScene 전부 해당)
+
+---
+
 ## TL;DR (For humans)
 Unity 6 + Cinemachine 기반 2D 플랫포머 게임의 기본 구색을 만듭니다.
 - 플레이어 캐릭터 (이동, 점프)

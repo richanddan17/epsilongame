@@ -1,0 +1,15 @@
+{
+  "schema_version": 2,
+  "active_work_id": "platformer-basic",
+  "works": {
+    "platformer-basic": {
+      "work_id": "platformer-basic",
+      "active_plan": ".omo/plans/platformer-basic.md",
+      "plan_name": "platformer-basic",
+      "session_ids": ["codex:ses_f795a5e4dfferORuypCSraGbNU"],
+      "status": "active",
+      "worktree_path": null,
+      "started_at": "2026-09-09T15:07:30.483Z"
+    }
+  }
+}
