@@ -22,11 +22,13 @@ namespace EpsilonGame
         private float moveInput;
         private int jumpsRemaining;
         private bool isGrounded;
+        private PlayerHealth playerHealth;
 
         private void Awake()
         {
             rb = GetComponent<Rigidbody2D>();
             if (animator == null) animator = GetComponent<Animator>();
+            playerHealth = GetComponent<PlayerHealth>();
         }
 
         // Input 읽기는 Update에서 (render rate, 카메라 끊김 방지!)
@@ -57,6 +59,9 @@ namespace EpsilonGame
         private void FixedUpdate()
         {
             CheckGrounded();
+
+            if (playerHealth != null && playerHealth.IsInKnockback)
+                return;
 
             rb.linearVelocity = new Vector2(moveInput * moveSpeed, rb.linearVelocity.y);
         }

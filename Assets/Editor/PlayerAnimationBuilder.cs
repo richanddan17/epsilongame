@@ -156,7 +156,9 @@ public static class PlayerAnimationBuilder
             return;
         }
 
-        Sprite[] sprites = AssetDatabase.LoadAllAssetsAtPath(idlePath).OfType<Sprite>().ToArray();
+        var allAssets = AssetDatabase.LoadAllAssetsAtPath(idlePath);
+        Sprite[] sprites = System.Array.ConvertAll(allAssets, a => a as Sprite);
+        sprites = System.Array.FindAll(sprites, s => s != null);
         if (sprites == null || sprites.Length == 0)
         {
             Debug.LogError("[PlayerAnimBuilder] no sprites found in " + idlePath);

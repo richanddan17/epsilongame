@@ -1,15 +1,327 @@
 {
   "schema_version": 2,
-  "active_work_id": "platformer-basic",
+  "active_work_id": "combat-platformer-2c74e521",
   "works": {
-    "platformer-basic": {
-      "work_id": "platformer-basic",
-      "active_plan": ".omo/plans/platformer-basic.md",
-      "plan_name": "platformer-basic",
-      "session_ids": ["codex:ses_f795a5e4dfferORuypCSraGbNU"],
+    "combat-platformer-2c74e521": {
+      "work_id": "combat-platformer-2c74e521",
+      "active_plan": "D:\\coding\\github c\\epsilongame\\.omo\\plans\\combat-platformer.md",
+      "plan_name": "combat-platformer",
       "status": "active",
-      "worktree_path": null,
-      "started_at": "2026-09-09T15:07:30.483Z"
+      "started_at": "2026-09-17T11:02:06.501Z",
+      "updated_at": "2026-09-17T23:15:31.034Z",
+      "session_ids": [
+        "opencode:ses_f51111562ffeKMSWYqYoBmwW8q",
+        "opencode:ses_f4ffe6ee4ffePd44OzMzXhibn4"
+      ],
+      "session_origins": {
+        "opencode:ses_f51111562ffeKMSWYqYoBmwW8q": "direct",
+        "opencode:ses_f4ffe6ee4ffePd44OzMzXhibn4": "direct"
+      },
+      "agent": "atlas",
+      "task_sessions": {
+        "todo:7": {
+          "task_key": "todo:7",
+          "task_label": "7",
+          "task_title": "**File/Directory**: `Assets/Prefabs/Player.prefab` — PlayerCombat/PlayerHealth 부착 완료 (YAML 검증 통과: L235 PlayerCombat, L261 PlayerHealth). Safe Mode 해제 후 **Play Mode 검증**: 콘솔 에러 0 + Fire1/Fire2 반응. 추가로 **플레이어 넉백 동작 검증** (적 공격 시 뒤로 밀리는지): PlayerController의 velocity 덮어쓰기와 넉백이 충돌하는지 확인 — 이 충돌은 신규 Todo 3.5에서 해결.",
+          "session_id": "opencode:ses_f4fa508eaffeIVViko51KzdBdQ",
+          "agent": "Sisyphus-Junior",
+          "category": "quick",
+          "updated_at": "2026-09-17T17:30:20.623Z",
+          "started_at": "2026-09-17T17:25:30.571Z",
+          "status": "completed",
+          "ended_at": "2026-09-17T17:30:20.623Z",
+          "elapsed_ms": 290052
+        },
+        "todo:11": {
+          "task_key": "todo:11",
+          "task_label": "11",
+          "task_title": "**File/Directory**: `Assets/Scripts/PlayerController.cs` + `Assets/Scripts/PlayerHealth.cs`",
+          "session_id": "opencode:ses_f4f93af8dffelWOol5xkv82Jwh",
+          "agent": "Sisyphus-Junior",
+          "category": "quick",
+          "updated_at": "2026-09-17T17:41:53.434Z",
+          "started_at": "2026-09-17T17:38:26.915Z",
+          "status": "completed",
+          "ended_at": "2026-09-17T17:41:53.434Z",
+          "elapsed_ms": 206519
+        },
+        "todo:12": {
+          "task_key": "todo:12",
+          "task_label": "12",
+          "task_title": "**File/Directory**: `Assets/Scripts/CombatDirector.cs` (신규)",
+          "session_id": "opencode:ses_f4f88c8a0ffet5jX5EBwGWGjwU",
+          "agent": "Sisyphus-Junior",
+          "category": "quick",
+          "updated_at": "2026-09-17T17:59:09.988Z",
+          "started_at": "2026-09-17T17:54:17.022Z",
+          "status": "completed",
+          "ended_at": "2026-09-17T17:59:09.987Z",
+          "elapsed_ms": 292965
+        },
+        "todo:13": {
+          "task_key": "todo:13",
+          "task_label": "13",
+          "task_title": "**File/Directory**: `Assets/Scripts/CombatCamera.cs` (신규) + `Assets/Scenes/Main.unity`",
+          "session_id": "opencode:ses_f4f78c7b9ffelG46P5FAwP7WeI",
+          "agent": "Sisyphus-Junior",
+          "category": "quick",
+          "updated_at": "2026-09-17T18:16:31.795Z",
+          "started_at": "2026-09-17T18:13:54.527Z",
+          "status": "completed",
+          "ended_at": "2026-09-17T18:16:31.794Z",
+          "elapsed_ms": 157267
+        },
+        "todo:14": {
+          "task_key": "todo:14",
+          "task_label": "14",
+          "task_title": "**File/Directory**: `Assets/Scripts/VfxSlot.cs` (신규) + `Assets/Prefabs/Player.prefab`에 VfxSlot 부착",
+          "session_id": "opencode:ses_f4f6955bfffeIndbnh5MykKLE0",
+          "agent": "Sisyphus-Junior",
+          "category": "quick",
+          "updated_at": "2026-09-17T18:43:47.148Z",
+          "started_at": "2026-09-17T18:40:51.496Z",
+          "status": "completed",
+          "ended_at": "2026-09-17T18:43:47.148Z",
+          "elapsed_ms": 175652
+        },
+        "todo:15": {
+          "task_key": "todo:15",
+          "task_label": "15",
+          "task_title": "**File/Directory**: `Assets/Scripts/Checkpoint.cs` (신규)",
+          "session_id": "opencode:ses_f4f507d6effe2vSoXWP004cxbB",
+          "agent": "Sisyphus-Junior",
+          "category": "quick",
+          "updated_at": "2026-09-17T19:07:18.623Z",
+          "started_at": "2026-09-17T18:57:48.425Z",
+          "status": "completed",
+          "ended_at": "2026-09-17T19:07:18.619Z",
+          "elapsed_ms": 570194
+        },
+        "todo:16": {
+          "task_key": "todo:16",
+          "task_label": "16",
+          "task_title": "**File/Directory**: `Assets/Scripts/GameManager.cs` (신규)",
+          "session_id": "opencode:ses_f4f39d3afffeIXQKGaK8Q5MA2x",
+          "agent": "Sisyphus-Junior",
+          "category": "quick",
+          "updated_at": "2026-09-17T19:20:57.837Z",
+          "started_at": "2026-09-17T19:18:33.097Z",
+          "status": "completed",
+          "ended_at": "2026-09-17T19:20:57.835Z",
+          "elapsed_ms": 144738
+        },
+        "todo:17": {
+          "task_key": "todo:17",
+          "task_label": "17",
+          "task_title": "**File/Directory**: `Assets/Scripts/UIManager.cs` (신규) + `Assets/Scenes/Main.unity` (Canvas)",
+          "session_id": "opencode:ses_f4f2eb824ffep6cy3dlF4rpRum",
+          "agent": "Sisyphus-Junior",
+          "category": "quick",
+          "updated_at": "2026-09-17T19:53:18.818Z",
+          "started_at": "2026-09-17T19:50:42.448Z",
+          "status": "completed",
+          "ended_at": "2026-09-17T19:53:18.817Z",
+          "elapsed_ms": 156369
+        },
+        "todo:18": {
+          "task_key": "todo:18",
+          "task_label": "18",
+          "task_title": "**File/Directory**: `Assets/Scenes/Main.unity`",
+          "session_id": "opencode:ses_f4f11017affeNFjUfUL6X8keRf",
+          "agent": "Sisyphus-Junior",
+          "category": "quick",
+          "updated_at": "2026-09-17T20:14:51.189Z",
+          "started_at": "2026-09-17T20:12:27.152Z",
+          "status": "completed",
+          "ended_at": "2026-09-17T20:14:51.182Z",
+          "elapsed_ms": 144030
+        },
+        "todo:19": {
+          "task_key": "todo:19",
+          "task_label": "19",
+          "task_title": "**File/Directory**: 전체 프로젝트",
+          "session_id": "opencode:ses_f4efd3446ffefd9OczFmgdDRT8",
+          "agent": "Sisyphus-Junior",
+          "category": "quick",
+          "updated_at": "2026-09-17T23:15:31.057Z",
+          "started_at": "2026-09-17T23:15:31.057Z",
+          "status": "running"
+        }
+      }
+    },
+    "player-sprite-animation-2c74e521": {
+      "work_id": "player-sprite-animation-2c74e521",
+      "active_plan": "D:\\coding\\github c\\epsilongame\\.omo\\plans\\player-sprite-animation.md",
+      "plan_name": "player-sprite-animation",
+      "status": "completed",
+      "started_at": "2026-09-17T11:15:00.000Z",
+      "updated_at": "2026-09-17T14:17:05.908Z",
+      "session_ids": [
+        "opencode:ses_f51111562ffeKMSWYqYoBmwW8q"
+      ],
+      "session_origins": {
+        "opencode:ses_f51111562ffeKMSWYqYoBmwW8q": "direct"
+      },
+      "agent": "atlas",
+      "task_sessions": {
+        "todo:1": {
+          "task_key": "todo:1",
+          "task_label": "1",
+          "task_title": "**File/Directory**: `Assets/sprite/player/idle.png`, `revision-walking.png`, `jump.png` (+ .meta)",
+          "session_id": "opencode:ses_f50f4bcf3ffe2Th6ta5VO1RpZ3",
+          "agent": "Sisyphus-Junior",
+          "category": "quick",
+          "started_at": "2026-09-17T11:04:52.939Z",
+          "status": "running",
+          "updated_at": "2026-09-17T12:06:18.877Z"
+        }
+      },
+      "ended_at": "2026-09-17T14:17:05.907Z",
+      "elapsed_ms": 10925907
     }
-  }
+  },
+  "active_plan": "D:\\coding\\github c\\epsilongame\\.omo\\plans\\combat-platformer.md",
+  "started_at": "2026-09-17T11:02:06.501Z",
+  "status": "active",
+  "updated_at": "2026-09-17T23:15:31.034Z",
+  "session_ids": [
+    "opencode:ses_f51111562ffeKMSWYqYoBmwW8q",
+    "opencode:ses_f4ffe6ee4ffePd44OzMzXhibn4"
+  ],
+  "session_origins": {
+    "opencode:ses_f51111562ffeKMSWYqYoBmwW8q": "direct",
+    "opencode:ses_f4ffe6ee4ffePd44OzMzXhibn4": "direct"
+  },
+  "plan_name": "combat-platformer",
+  "task_sessions": {
+    "todo:7": {
+      "task_key": "todo:7",
+      "task_label": "7",
+      "task_title": "**File/Directory**: `Assets/Prefabs/Player.prefab` — PlayerCombat/PlayerHealth 부착 완료 (YAML 검증 통과: L235 PlayerCombat, L261 PlayerHealth). Safe Mode 해제 후 **Play Mode 검증**: 콘솔 에러 0 + Fire1/Fire2 반응. 추가로 **플레이어 넉백 동작 검증** (적 공격 시 뒤로 밀리는지): PlayerController의 velocity 덮어쓰기와 넉백이 충돌하는지 확인 — 이 충돌은 신규 Todo 3.5에서 해결.",
+      "session_id": "opencode:ses_f4fa508eaffeIVViko51KzdBdQ",
+      "agent": "Sisyphus-Junior",
+      "category": "quick",
+      "updated_at": "2026-09-17T17:30:20.623Z",
+      "started_at": "2026-09-17T17:25:30.571Z",
+      "status": "completed",
+      "ended_at": "2026-09-17T17:30:20.623Z",
+      "elapsed_ms": 290052
+    },
+    "todo:11": {
+      "task_key": "todo:11",
+      "task_label": "11",
+      "task_title": "**File/Directory**: `Assets/Scripts/PlayerController.cs` + `Assets/Scripts/PlayerHealth.cs`",
+      "session_id": "opencode:ses_f4f93af8dffelWOol5xkv82Jwh",
+      "agent": "Sisyphus-Junior",
+      "category": "quick",
+      "updated_at": "2026-09-17T17:41:53.434Z",
+      "started_at": "2026-09-17T17:38:26.915Z",
+      "status": "completed",
+      "ended_at": "2026-09-17T17:41:53.434Z",
+      "elapsed_ms": 206519
+    },
+    "todo:12": {
+      "task_key": "todo:12",
+      "task_label": "12",
+      "task_title": "**File/Directory**: `Assets/Scripts/CombatDirector.cs` (신규)",
+      "session_id": "opencode:ses_f4f88c8a0ffet5jX5EBwGWGjwU",
+      "agent": "Sisyphus-Junior",
+      "category": "quick",
+      "updated_at": "2026-09-17T17:59:09.988Z",
+      "started_at": "2026-09-17T17:54:17.022Z",
+      "status": "completed",
+      "ended_at": "2026-09-17T17:59:09.987Z",
+      "elapsed_ms": 292965
+    },
+    "todo:13": {
+      "task_key": "todo:13",
+      "task_label": "13",
+      "task_title": "**File/Directory**: `Assets/Scripts/CombatCamera.cs` (신규) + `Assets/Scenes/Main.unity`",
+      "session_id": "opencode:ses_f4f78c7b9ffelG46P5FAwP7WeI",
+      "agent": "Sisyphus-Junior",
+      "category": "quick",
+      "updated_at": "2026-09-17T18:16:31.795Z",
+      "started_at": "2026-09-17T18:13:54.527Z",
+      "status": "completed",
+      "ended_at": "2026-09-17T18:16:31.794Z",
+      "elapsed_ms": 157267
+    },
+    "todo:14": {
+      "task_key": "todo:14",
+      "task_label": "14",
+      "task_title": "**File/Directory**: `Assets/Scripts/VfxSlot.cs` (신규) + `Assets/Prefabs/Player.prefab`에 VfxSlot 부착",
+      "session_id": "opencode:ses_f4f6955bfffeIndbnh5MykKLE0",
+      "agent": "Sisyphus-Junior",
+      "category": "quick",
+      "updated_at": "2026-09-17T18:43:47.148Z",
+      "started_at": "2026-09-17T18:40:51.496Z",
+      "status": "completed",
+      "ended_at": "2026-09-17T18:43:47.148Z",
+      "elapsed_ms": 175652
+    },
+    "todo:15": {
+      "task_key": "todo:15",
+      "task_label": "15",
+      "task_title": "**File/Directory**: `Assets/Scripts/Checkpoint.cs` (신규)",
+      "session_id": "opencode:ses_f4f507d6effe2vSoXWP004cxbB",
+      "agent": "Sisyphus-Junior",
+      "category": "quick",
+      "updated_at": "2026-09-17T19:07:18.623Z",
+      "started_at": "2026-09-17T18:57:48.425Z",
+      "status": "completed",
+      "ended_at": "2026-09-17T19:07:18.619Z",
+      "elapsed_ms": 570194
+    },
+    "todo:16": {
+      "task_key": "todo:16",
+      "task_label": "16",
+      "task_title": "**File/Directory**: `Assets/Scripts/GameManager.cs` (신규)",
+      "session_id": "opencode:ses_f4f39d3afffeIXQKGaK8Q5MA2x",
+      "agent": "Sisyphus-Junior",
+      "category": "quick",
+      "updated_at": "2026-09-17T19:20:57.837Z",
+      "started_at": "2026-09-17T19:18:33.097Z",
+      "status": "completed",
+      "ended_at": "2026-09-17T19:20:57.835Z",
+      "elapsed_ms": 144738
+    },
+    "todo:17": {
+      "task_key": "todo:17",
+      "task_label": "17",
+      "task_title": "**File/Directory**: `Assets/Scripts/UIManager.cs` (신규) + `Assets/Scenes/Main.unity` (Canvas)",
+      "session_id": "opencode:ses_f4f2eb824ffep6cy3dlF4rpRum",
+      "agent": "Sisyphus-Junior",
+      "category": "quick",
+      "updated_at": "2026-09-17T19:53:18.818Z",
+      "started_at": "2026-09-17T19:50:42.448Z",
+      "status": "completed",
+      "ended_at": "2026-09-17T19:53:18.817Z",
+      "elapsed_ms": 156369
+    },
+    "todo:18": {
+      "task_key": "todo:18",
+      "task_label": "18",
+      "task_title": "**File/Directory**: `Assets/Scenes/Main.unity`",
+      "session_id": "opencode:ses_f4f11017affeNFjUfUL6X8keRf",
+      "agent": "Sisyphus-Junior",
+      "category": "quick",
+      "updated_at": "2026-09-17T20:14:51.189Z",
+      "started_at": "2026-09-17T20:12:27.152Z",
+      "status": "completed",
+      "ended_at": "2026-09-17T20:14:51.182Z",
+      "elapsed_ms": 144030
+    },
+    "todo:19": {
+      "task_key": "todo:19",
+      "task_label": "19",
+      "task_title": "**File/Directory**: 전체 프로젝트",
+      "session_id": "opencode:ses_f4efd3446ffefd9OczFmgdDRT8",
+      "agent": "Sisyphus-Junior",
+      "category": "quick",
+      "updated_at": "2026-09-17T23:15:31.057Z",
+      "started_at": "2026-09-17T23:15:31.057Z",
+      "status": "running"
+    }
+  },
+  "agent": "atlas"
 }

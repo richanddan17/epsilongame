@@ -31,6 +31,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7719072333058571909}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3254144694278646705
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 277083498768009505}
+  m_Layer: 0
+  m_Name: SlashSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &277083498768009505
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3254144694278646705}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.8, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7719072333058571909}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8846202601275568823
 GameObject:
   m_ObjectHideFlags: 0
@@ -47,6 +78,7 @@ GameObject:
   - component: {fileID: -8508025306801126817}
   - component: {fileID: 8781282411738127645}
   - component: {fileID: 6076578402310098925}
+  - component: {fileID: -7052409518633954890}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -68,6 +100,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3745183839006958875}
+  - {fileID: 277083498768009505}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7867139004809550118
@@ -127,7 +160,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_SpriteSortPoint: 0
 --- !u!50 &2484162301456392943
 Rigidbody2D:
@@ -264,6 +297,7 @@ MonoBehaviour:
   maxHealth: 5
   invincibleTime: 0.5
   knockbackForce: 8
+  knockbackDuration: 0.2
 --- !u!95 &6076578402310098925
 Animator:
   serializedVersion: 7
@@ -286,3 +320,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-7052409518633954890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8846202601275568823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 830906c81111b7b43b8e189662d23913, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EpsilonGame.VfxSlot
+  slashEffectPrefab: {fileID: 0}
+  perfectParryEffectPrefab: {fileID: 0}
+  slashSpawnPoint: {fileID: 277083498768009505}
