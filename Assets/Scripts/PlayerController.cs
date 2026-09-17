@@ -15,6 +15,9 @@ namespace EpsilonGame
         [SerializeField] private float groundCheckRadius = 0.2f;
         [SerializeField] private LayerMask groundLayer;
 
+        [Header("Animation")]
+        [SerializeField] private Animator animator;
+
         private Rigidbody2D rb;
         private float moveInput;
         private int jumpsRemaining;
@@ -23,6 +26,7 @@ namespace EpsilonGame
         private void Awake()
         {
             rb = GetComponent<Rigidbody2D>();
+            if (animator == null) animator = GetComponent<Animator>();
         }
 
         // Input 읽기는 Update에서 (render rate, 카메라 끊김 방지!)
@@ -36,6 +40,17 @@ namespace EpsilonGame
                 rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
                 jumpsRemaining--;
             }
+
+            // Animator 파라미터 갱신
+            if (animator != null)
+            {
+                animator.SetFloat("Speed", Mathf.Abs(moveInput));
+                animator.SetBool("IsGrounded", isGrounded);
+            }
+
+            // 좌우 반전 (localScale 방식 — PlayerCombat.cs 방향 판정 호환)
+            if (moveInput != 0f)
+                transform.localScale = new Vector3(Mathf.Sign(moveInput), 1f, 1f);
         }
 
         // Velocity 설정은 FixedUpdate에서 (physics rate)
