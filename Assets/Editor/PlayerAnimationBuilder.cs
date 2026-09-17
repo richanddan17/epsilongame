@@ -1,5 +1,6 @@
 using System.Linq;
 using UnityEditor;
+using UnityEditor.Animations;
 using UnityEngine;
 
 /// <summary>
@@ -62,5 +63,75 @@ public static class PlayerAnimationBuilder
         string path = "Assets/Animations/" + clipName + ".anim";
         AssetDatabase.CreateAsset(clip, path);
         Debug.Log("[PlayerAnimBuilder] created: " + path + " (" + frameCount + " frames @ " + FrameRate + "fps)");
+    }
+
+    [MenuItem("Tools/Player/Build Animator Controller")]
+    public static void BuildPlayerAnimatorController()
+    {
+        const string controllerPath = "Assets/Animations/PlayerAnimator.controller";
+
+        if (AssetDatabase.LoadAssetAtPath<RuntimeAnimatorController>(controllerPath) != null)
+        {
+            AssetDatabase.DeleteAsset(controllerPath);
+        }
+
+        var controller = AnimatorController.CreateAnimatorControllerAtPath(controllerPath);
+
+        controller.AddParameter("Speed", AnimatorControllerParameterType.Float);
+        controller.AddParameter("IsGrounded", AnimatorControllerParameterType.Bool);
+
+        var sm = controller.layers[0].stateMachine;
+
+        var idleClip = AssetDatabase.LoadAssetAtPath<AnimationClip>("Assets/Animations/PlayerIdle.anim");
+        var walkClip = AssetDatabase.LoadAssetAtPath<AnimationClip>("Assets/Animations/PlayerWalk.anim");
+        var jumpClip = AssetDatabase.LoadAssetAtPath<AnimationClip>("Assets/Animations/PlayerJump.anim");
+
+        if (idleClip == null || walkClip == null || jumpClip == null)
+        {
+            Debug.LogError("[PlayerAnimBuilder] missing animation clips. Run 'Tools/Player/Build Animations' first.");
+            return;
+        }
+
+        var idle = sm.AddState("Idle");
+        idle.motion = idleClip;
+
+        var walk = sm.AddState("Walk");
+        walk.motion = walkClip;
+
+        var jump = sm.AddState("Jump");
+        jump.motion = jumpClip;
+
+        sm.defaultState = idle;
+
+        float dur = 0.1f;
+
+        var t = idle.AddTransition(walk);
+        t.duration = dur;
+        t.AddCondition(AnimatorConditionMode.Greater, 0.1f, "Speed");
+
+        t = walk.AddTransition(idle);
+        t.duration = dur;
+        t.AddCondition(AnimatorConditionMode.Less, 0.1f, "Speed");
+
+        t = idle.AddTransition(jump);
+        t.duration = dur;
+        t.AddCondition(AnimatorConditionMode.IfNot, 0f, "IsGrounded");
+
+        t = walk.AddTransition(jump);
+        t.duration = dur;
+        t.AddCondition(AnimatorConditionMode.IfNot, 0f, "IsGrounded");
+
+        t = jump.AddTransition(idle);
+        t.duration = dur;
+        t.AddCondition(AnimatorConditionMode.If, 0f, "IsGrounded");
+        t.AddCondition(AnimatorConditionMode.Less, 0.1f, "Speed");
+
+        t = jump.AddTransition(walk);
+        t.duration = dur;
+        t.AddCondition(AnimatorConditionMode.If, 0f, "IsGrounded");
+        t.AddCondition(AnimatorConditionMode.Greater, 0.1f, "Speed");
+
+        AssetDatabase.SaveAssets();
+        Debug.Log("[PlayerAnimBuilder] animator controller created: " + controllerPath);
     }
 }
