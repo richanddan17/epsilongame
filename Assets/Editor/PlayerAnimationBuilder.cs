@@ -134,4 +134,50 @@ public static class PlayerAnimationBuilder
         AssetDatabase.SaveAssets();
         Debug.Log("[PlayerAnimBuilder] animator controller created: " + controllerPath);
     }
+
+    [MenuItem("Tools/Player/Apply Prefab")]
+    public static void ApplyPrefab()
+    {
+        const string prefabPath = "Assets/Prefabs/Player.prefab";
+        const string idlePath = "Assets/sprite/player/idle.png";
+        const string controllerPath = "Assets/Animations/PlayerAnimator.controller";
+
+        var prefab = AssetDatabase.LoadAssetAtPath<GameObject>(prefabPath);
+        if (prefab == null)
+        {
+            Debug.LogError("[PlayerAnimBuilder] prefab not found: " + prefabPath);
+            return;
+        }
+
+        var sr = prefab.GetComponent<SpriteRenderer>();
+        if (sr == null)
+        {
+            Debug.LogError("[PlayerAnimBuilder] SpriteRenderer missing on prefab root: " + prefabPath);
+            return;
+        }
+
+        Sprite[] sprites = AssetDatabase.LoadAllAssetsAtPath(idlePath).OfType<Sprite>().ToArray();
+        if (sprites == null || sprites.Length == 0)
+        {
+            Debug.LogError("[PlayerAnimBuilder] no sprites found in " + idlePath);
+            return;
+        }
+
+        sr.sprite = sprites[0];
+        sr.color = Color.white;
+
+        var anim = prefab.GetComponent<Animator>();
+        if (anim == null)
+        {
+            anim = prefab.AddComponent<Animator>();
+        }
+        anim.runtimeAnimatorController =
+            AssetDatabase.LoadAssetAtPath<RuntimeAnimatorController>(controllerPath);
+
+        PrefabUtility.SavePrefabAsset(prefab);
+        AssetDatabase.SaveAssets();
+
+        Debug.Log("[PlayerAnimBuilder] prefab applied: sprite=" + sr.sprite.name +
+                  " color=white animator=" + (anim.runtimeAnimatorController != null));
+    }
 }
