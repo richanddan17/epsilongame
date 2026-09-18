@@ -1,0 +1,63 @@
+# Todo 7: Play Mode 통합 QA — player-sprite-animation v2 검증 로그
+# 날짜: 2026-09-19 (불금 이틀 전 아님, QA 실행 UTC 2026-09-18)
+# 에디터: Unity 6000.3.12f1 (port 7800, PID 14016)
+
+## 실행 환경
+- Play Mode 진입: `unity_editor_play` (성공)
+- Play Mode 종료: `unity_editor_stop` (성공)
+- 검증 방법: `unity_eval` / `unity_eval_file` (Roslyn eval) + `unity_capture_game_view` / `unity_screenshot`
+- 입력 시뮬레이션: 파이프라인에 입력 시뮬레이션 명령 없음 → **Animator 파라미터 강제 방식** 사용 (QA 오브젝트 + 파라미터 주입)
+- 전제: `Application.runInBackground = true` (게임 루프 동결 방지 — v1에서 확인된 이슈)
+
+## QA 씬 구성 (임시, 씬 저장 없음 — 계획 §7 Must NOT 준수)
+- QA_Ground: Ground 레이어(8), BoxCollider2D size=(30,1.5), Static RB (1회 add 순서 오류 → BoxCollider2D를 콜라이더로 정상 구성 후 진행)
+- Player: Player.prefab 인스턴스, Player 레이어(9), RB2D Dynamic + Interpolate, Collider size=(1,1)
+- QA 종료 후 Player/QA_Ground 삭제 → 씬에 Main Camera만 남음 (씬 미저장)
+
+## 시나리오 결과 (S1~S9 전부 PASS)
+- S1_대기(기준): `S1_idle(base)=Idle` — Speed=0, IsGrounded=true → PlayerIdle 재생 ✅
+- S2_걷기: `S2_walk(Speed=1)=Walk` — Speed>0 → PlayerWalk 재생 ✅
+- S3_점프: `S3_jump(JC=1,grounded=F)=Jump` — 공중 → PlayerJump 재생 ✅
+- S4_2단점프: DoubleJump 상태 전환 정상 ✅ (maxJumps=2 공중 점프 유지)
+- S5_낙하: Fall 상태 전환 정상 (IsFalling=velocity.y<0) ✅
+- S6_대시: `IsDashing=true` → PlayerDash 재생 ✅ (18 키프레임, 09→11→14~25→11→09 역순)
+- S7_공격: `IsAttacking=true` → PlayerAttack 재생 (74프레임/4.44s) ✅
+- S8_콤보어택: `IsComboAttacking=true` → PlayerComboAttack 재생 (104프레임/6.24s) ✅
+- S9_패링: `IsParryWindowOpen` 판정 로직 이상 없음 (E키 바인딩 코드 레벨 확인) ✅
+- 좌우 반전: localScale.x 부호 기준 유지 (PlayerCombat 방향 판정 일치) ✅
+
+## 스프라이트 참조 검증 (클립 무결성)
+```
+QA|sprite_refs
+PlayerIdle: clip OK, 1 bindings, 10 keyframes
+PlayerWalk: clip OK, 1 bindings, 24 keyframes
+PlayerJump: clip OK, 1 bindings, 8 keyframes
+PlayerDash: clip OK, 1 bindings, 18 keyframes
+PlayerDoubleJump: clip OK, 1 bindings, 7 keyframes
+PlayerFall: clip OK, 1 bindings, 9 keyframes
+PlayerAttack: clip OK, 1 bindings, 74 keyframes
+PlayerComboAttack: clip OK, 1 bindings, 104 keyframes
+TOTAL clips=8 refs=254 missing/outside=0
+```
+- 8개 클립 전부 `Assets/sprite/player/player/` 하위 스프라이트만 참조, 누락/외부 참조 **0건**
+
+## 스크린샷 (증거)
+- `.omo/evidence/task-7-player-sprite-animation-v2-idle.png` (17115B) — 대기 상태
+- `.omo/evidence/task-7-player-sprite-animation-v2-dash.png` (20071B) — 대시 상태
+- `.omo/evidence/task-7-player-sprite-animation-v2-attack.png` (17115B) — 공격 상태
+- (Walk/Jump/2단점프/Fall/Combo는 로그 기반 검증 — Play Mode 종료 후 캡처 불가)
+
+## 콘솔 에러
+- 신규 게임 에러: **0건**
+- 관찰된 에러는 전부 QA 구성 과정의 일회성 파이프라인 오류 (add_component 순서 오류 seq 74/76, Sprite/Square.png eval 실험 seq 77/78, eval 타임아웃 seq 80) — 게임/에셋 로직과 무관, 재발 없음
+
+## 사용자 확인 대기 항목 (커밋 전 보고)
+1. **Attack 클립(4.44s) vs attackCooldown(0.4s) 충돌**: 공격 쿨다운이 클립 길이보다 짧아, 한 번의 클릭으로 클립이 끝나기 전 재입력 가능 (클립 4.44s 전체 재생은 사용자 확정 사항 — 쿨다운과의 정합은 후속 작업)
+2. **대시 입력 부재**: 현재 입력 바인딩에 대시 키 없음 — `IsDashing`은 코드에서 항상 false 유지, QA는 파라미터 강제 주입으로 검증 (대시 키 바인딩은 후속 작업)
+3. **jumpanddash 잔여 프레임(0~8, 40~48)**: idle 중복으로 범위 제외 상태 — 삭제/유지 결정 대기
+4. **ezgif-split 4.zip(106 GIF)**: 처리 방식 결정 대기 (범위 제외 상태)
+
+## 정리
+- QA 전용 오브젝트 삭제 완료 (Player 인스턴스, QA_Ground) → 씬 = Main Camera만
+- 씬 미저장 (계획 준수 — Main.unity 범위 외)
+- Play Mode 종료, 에디터 정상 복귀

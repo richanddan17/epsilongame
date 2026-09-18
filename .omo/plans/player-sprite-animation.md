@@ -1,193 +1,264 @@
-# player-sprite-animation - Work Plan
+# player-sprite-animation v2 - Work Plan
 
 ## TL;DR (For humans)
 
-**What you'll get:** 게임 속 파란 사각형 플레이어가 실제 캐릭터 이미지로 바뀌고, 가만히 있을 때(멍때리기), 걸을 때(걷기), 점프할 때(점프) 각각 알맞은 애니메이션이 재생됩니다.
+**What you'll get:** 플레이어가 실제 캐릭터 스프라이트로 변신 + **좌클릭 = 일반 공격, 우클릭 = 콤보 어택** 애니메이션 재생. 패링(parry)은 E키로 이동. 걷기/점프/대시/대기까지 전부 애니메이션 처리.
 
-**Why this approach:** Unity 에디터를 열어두고 실시간으로 작업해서 완성 직후 바로 확인합니다. 캐릭터 크기도 기존 몸통(1×1)과 일치하도록 맞춥니다.
+**Why this approach:** 사용자가 `Assets/sprite/player/player/` 폴더에 파일명 기준(딜레이 포함)으로 프레임을 분류해둠. 이 폴더만 사용하고 나머지(heavy_player, Warrior, sword_man 등)는 전부 무시.
 
-**What it will NOT do:** 공격/패링 애니메이션은 만들지 않습니다 (준비된 이미지에 공격 컷이 없음 — 나중에 에셋 추가 시 연결). 적이나 레벨은 건드리지 않습니다.
+**What it will NOT do:** `player/` 폴더 외 에셋 미사용. `ezgif-split 4.zip`(106 GIF)과 `jumpanddash` 잔여 18장(0~8, 40~48 = idle 중복)은 미압축/보류 — 범위 제외. 적/카메라/씬/게임플레이 로직은 건드리지 않음(입력 바인딩 제외).
 
-**Effort:** Short
-**Risk:** Low - 스프라이트 슬라이스 일부(pivot/크기)가 제각각이라 점프 애니메이션 정렬에 미세 조정 가능성
-**Decisions to sanity-check:** 캐릭터 크기 기준을 PPU 100 (1 유닛)으로 통일한 것, 애니메이션이 12fps일 것
+**Effort:** Medium-Long
+**Risk:** Medium - 스프라이트 시트(idle/walk)의 프레임 수/셀 크기 미확정(에디터 확인 필요), attack 74프레임 단일 클립이 약 4.4초로 김(연출 확인 필요)
+**Decisions to sanity-check:** 좌/우클릭 바인딩 변경(패링 → E), attack 클립 길이, idle/walk 시트 슬라이스 규격
 
-Your next move: 계획을 승인하면 에디터를 열고 실행 단계로 넘어갑니다. 전체 실행 상세는 아래에 있습니다.
+Your next move: 계획서 수정 완료 후 승인 → 에디터 오픈 → 실행 단계.
 
 ---
 
-> TL;DR (machine): Short effort, Low risk — Player 스프라이트 3종(PPU 100) + Idle/Walk/Jump 클립 3개 + PlayerAnimator.controller + PlayerController 연동 + 프리팹 적용 + Play Mode QA
+> TL;DR (machine): Medium-Long effort, Medium risk — 사용자 신규 에셋(attack 74/combo 104/dash 15·18키프레임/jump 8/doublejump 7/fall 9 + idle/walk 시트)으로 클립 8개 + 컨트롤러 재구성 + PlayerCombat 입력 변경(Fire1=attack, Fire2=combo, E=parry) + PlayerController 점프/낙하 연동 + 프리팹 적용 + Play Mode QA
 
 ## Scope
+
+### 사용자 결정 사항 (확정)
+- **좌클릭(Fire1)** = 일반 공격 → `attack/` (74프레임, delay-0.06s)
+- **우클릭(Fire2)** = 콤보 어택 → `combo_attack/` (104프레임, delay-0.06s)
+- **패링(parry)** = **E키**로 이동 (기존 Fire2 자리 → 콤보 어택이 차지)
+- **jumpanddash 분리 (사용자 확정)**: `jump/` 8장(frame_09~16) = 점프 도약, `dash/` 15장(frame_09~11 + frame_14~25) = 대시, **`doublejump/` 7장(frame_25~31) = 공중 2단 점프**, **`fall/` 9장(frame_31~39) = 낙하** — 프레임이 클립 간 겹치는 것은 의도된 것 (복제로 각 폴더에 포함)
+- **dash 재생 순서 (사용자 확정)**: `frame_09,10,11 → 14,15,...,25 → 11,10,09(역순 재생)` — 15개 파일을 18 키프레임으로 재사용
+- **사용 에셋 = `Assets/sprite/player/player/`만** (파일명의 `delay-0.06s`/`delay-0.07s`를 클립 타이밍에 사용)
+
+### 에셋 인벤토리 (사용자 분류 확정)
+| 경로 (`Assets/sprite/player/player/`) | 프레임 | 규격 | 딜레이 | 용도 |
+|---|---|---|---|---|
+| `attack/` | 74 PNG | 729×462 | 0.06s | 좌클릭 공격 |
+| `combo_attack/` | 104 PNG | 906×831 | 0.06s | 우클릭 콤보 (이미 import됨) |
+| `idle/sprite sheets/idle.png` | **10프레임** (시트 460×55 = 10셀×46px, aseprite 확정) | 64×64 | 60ms | 대기 (슬라이스 필요) |
+| `walk/sprite sheets/walk.png` | **26프레임 소스** (시트 180×348 = 4열×6행=24셀, 45×58 — **시트/소스 불일치 확인**) | 53×64 | 50ms | 걷기 (슬라이스 필요) |
+| `jumpanddash/jump/` | 8 PNG (9~16) | 1280×490 | 0.07s | 점프 도약 |
+| `jumpanddash/dash/` | 15 PNG (9~11, 14~25) | 1280×490 | 0.07s | 대시 (18키프레임: 9,10,11→14~25→11,10,09 역순) |
+| `jumpanddash/doublejump/` | 7 PNG (25~31) | 1280×490 | 0.07s | 공중 2단 점프 |
+| `jumpanddash/fall/` | 9 PNG (31~39) | 1280×490 | 0.07s | 낙하 (고공 낙하 대응) |
+| `ezgif-split 4.zip` | 106 GIF | 미압축 | 0.06s | **보류 (범위 제외)** |
+| `jumpanddash/` 잔여 18장 | 0~8, 40~48 | idle 루프 중복 | — | **보류 (범위 제외)** |
+
 ### Must have
-- 스프라이트 임포트 설정: `Assets/sprite/player/`의 idle.png / revision-walking.png / jump.png PPU 149.25 → **100**, jump.png sprite pivot (0,0) → **(0.5, 0.5)** (idle/walk와 통일 — 안 그러면 점프 애니메이션에서 캐릭터가 왼쪽 아래로 어긋남)
-- AnimationClip 3개: `Assets/Animations/PlayerIdle.anim` (idle_0~3, 12fps 루프), `PlayerWalk.anim` (walk_0~7, 12fps 루프), `PlayerJump.anim` (jump_0~3, 12fps 루프)
-- `Assets/Animations/PlayerAnimator.controller`: 파라미터 **Speed (float)**, **IsGrounded (bool)**; 상태 Idle/Walk/Jump; 전이 6개 (아래 Todo 3-1 전이표)
-- `Assets/Scripts/PlayerController.cs` 수정: Animator 참조 + Update에서 Speed/IsGrounded 파라미터 갱신 + MoveInput 부호로 localScale.x 반전 (이동/점프 물리 로직 불변)
-- `Assets/Prefabs/Player.prefab`: SpriteRenderer.sprite = idle_0 할당, Animator 컴포넌트 부착 + PlayerAnimator.controller 연결
-- Play Mode QA: Idle/Walk/Jump 전환 3시나리오 PASS + 콘솔 에러 0
+- **스프라이트 임포트**: `attack/`, `combo_attack/`, `jumpanddash/jump/`, `jumpanddash/dash/`, `jumpanddash/doublejump/`, `jumpanddash/fall/` — 개별 PNG 프레임, PPU 100, pivot (0.5,0.5) 통일 (combo_attack은 이미 import — 설정만 확인/정렬)
+- **스프라이트 시트 슬라이스**: `idle.png`(460×55), `walk.png`(180×348) — 셀 크기/프레임 수 에디터 확인 후 슬라이스 (개별 스프라이트로 분리)
+- **AnimationClip 8개**: `PlayerIdle`, `PlayerWalk`, `PlayerJump`, `PlayerDash`, `PlayerDoubleJump`, `PlayerFall`, `PlayerAttack`, `PlayerComboAttack` — 파일명 딜레이를 키프레임 간격에 반영 (0.06s/0.07s), 공격계/점프/대시/낙하는 단발(Loop 해제), 이동/대기는 Loop. **PlayerJump/PlayerDoubleJump/PlayerFall은 프레임 중복 사용 가능 (같은 스프라이트 재참조)**
+- **`Assets/Animations/PlayerAnimator.controller` 재구성**: 파라미터 **Speed(float)**, **IsGrounded(bool)**, **IsAttacking(bool)**, **IsComboAttacking(bool)**, **IsDashing(bool)** + **IsFalling(bool)**; 상태 Idle/Walk/Jump/DoubleJump/Fall/Dash/Attack/ComboAttack (8상태)
+- **`Assets/Scripts/PlayerCombat.cs` 입력 변경**: `HandleAttackInput` Fire1 유지(→Attack), `HandleParryInput` Fire2 → **콤보 어택 트리거로 교체**, 패링은 `Input.GetKeyDown(KeyCode.E)`로 이동 — 판정 로직(불변 유지)
+- **`PlayerController.cs`/`PlayerCombat.cs` Animator 연동**: Speed/IsGrounded(기존 유지) + IsAttacking/IsComboAttacking/IsDashing/IsFalling 파라미터 갱신
+- **`Assets/Prefabs/Player.prefab` 적용**: Animator controller 교체, SpriteRenderer 초기 스프라이트 = idle 0번
+- **Play Mode QA**: 좌클릭 공격 / 우클릭 콤보 / E 패링 / 이동 / 점프 / 2단점프 / 낙하 / 대시 전환 시나리오 PASS + 콘솔 에러 0
 
 ### Must NOT have (guardrails, anti-slop, scope boundaries)
-- 공격/패링 애니메이션 클립 (스프라이트에 공격 컷 없음 — 사용자 에셋 대기, VfxSlot과 무관)
+- `player/` **외** 폴더 전부 무시 (heavy_player, Warrior, sword_,man, sword_man2, TheHand) — 이동/삭제/참조 금지
+- `ezgif-split 4.zip` 처리 (GIF→PNG 변환 포함) — 사용자 결정 보류, 범위 제외
+- `jumpanddash` 잔여 23장 처리 — range 제외
 - Enemy 프리팹/컨트롤러/EnemyPrefabBuilder.cs 수정
-- PixelPerfectCamera / 2d-pixel-perfect 전면 적용 (PPU만 변경 — 카메라 세팅 범위 외)
-- Input System 마이그레이션 / VfxSlot 적용 (combat-platformer Wave 4 별도)
-- PlayerController의 이동/점프 파라미터 값 변경 (moveSpeed/jumpForce/maxJumps 불변)
 - `Assets/Scenes/Main.unity` 수정
-- Animator Controller를 YAML 수작업 편집 (에디터 라이브 중 — Unity CLI/에디터 API로만 변경)
+- PlayerController의 이동/점프 파라미터 값 변경 (moveSpeed/jumpForce/maxJumps 불변)
+- PlayerCombat의 공격 판정/데미지/쿨다운 값 변경 (입력 바인딩만 수정)
+- Animator Controller/클립을 YAML 수작업 편집 (에디터 라이브 중 — Unity CLI/에디터 API로만 변경)
 
 ## Verification strategy
-> Zero human intervention - all verification is agent-executed.
+> Zero human intervention - all verification is agent-executed (user가 스프라이트시트 규격/클립 길이만 확인).
 - Test decision: **none** (Unity Play Mode 수동 시나리오 — 기존 계획서 패턴 동일, TDD 부적합)
-- QA 도구: 에디터 라이브에서 `unity command editor_play` 진입 → 스크립트 평가로 파라미터 강제 + 씬 스크린샷/로그 수집
-- Evidence: .omo/evidence/task-6-player-sprite-animation.png (+ .log)
+- QA 도구: 에디터 라이브에서 `unity command editor_play` 진입 → 애니메이터 상태별 스크린샷/로그 수집
+- Evidence: `.omo/evidence/task-7-player-sprite-animation-v2.{png,log}`
 
 ## Execution strategy
 ### Parallel execution waves
-- **Wave 1** (Todo 1): 스프라이트 임포트 설정 (PPU 100 + jump pivot) — 다른 모든 작업의 선행
-- **Wave 2** (Todo 2~3): PlayerAnimationBuilder.cs 작성 → 클립 3개 + 컨트롤러 1개 생성 (같은 스크립트/한 번의 에디터 실행)
-- **Wave 3** (Todo 4~5): PlayerController.cs 연동 → 프리팹 적용
-- **Wave 4** (Todo 6): Play Mode QA + 커밋
+- **Wave 1** (Todo 1~2): 스프라이트 임포트 설정 + 시트 슬라이스 — 전 작업 선행
+- **Wave 2** (Todo 3~4): PlayerAnimationBuilder.cs 작성 → 클립 8개 + 컨트롤러 재구성 (한 번의 에디터 실행)
+- **Wave 3** (Todo 5~6): PlayerCombat 입력 변경 + PlayerController/PlayerCombat Animator 연동 → 프리팹 적용
+- **Wave 4** (Todo 7): Play Mode QA + 커밋
 
-전제: **에디터가 열려 있어야 함** — 실행 시작 전 사용자/워커가 `unity open`(또는 사용자 수동)로 에디터 오픈, `unity status` state=ready 확인 후 진행. 라이브 에디터 중 YAML 직접 편집 금지 — 모든 변경은 `unity command eval` / [MenuItem] (에디터 스크립트) 경유.
+전제: **에디터가 열려 있어야 함** — 실행 시작 전 사용자/워커가 `unity open`(또는 사용자 수동)로 에디터 오픈, `unity status` state=ready 확인 후 진행. 라이브 에디터 중 YAML 직접 편집 금지 — 모든 변경은 `unity command eval` / [MenuItem] 경유.
 
 ### Dependency matrix
 | Todo | Depends on | Blocks | Can parallelize with |
 | --- | --- | --- | --- |
-| 1 (임포트 설정) | 에디터 ready | 2,3,5 | — |
-| 2 (클립 생성) | 1 | 3,5 | — |
-| 3 (컨트롤러 생성) | 2 | 5 | — |
-| 4 (PlayerController 연동) | 2 (파라미터 명세) | 5 | 3 |
-| 5 (프리팹 적용) | 2,3,4 | 6 | — |
-| 6 (QA) | 5 | — | — |
+| 1 (PNG 프레임 임포트) | 에디터 ready | 3 | 2 |
+| 2 (시트 슬라이스) | 에디터 ready + 사용자 규격 확인 | 3 | 1 |
+| 3 (클립 생성) | 1,2 | 4,5 | — |
+| 4 (컨트롤러 재구성) | 3 | 6 | — |
+| 5 (PlayerCombat 입력) | 3 (파라미터 명세) | 6 | 4 |
+| 6 (프리팹 적용) | 3,4,5 | 7 | — |
+| 7 (QA) | 6 | — | — |
 
 ## Todos
 > Implementation + Test = ONE todo. Never separate.
-<!-- APPEND TASK BATCHES BELOW THIS LINE WITH edit/apply_patch - never rewrite the headers above. -->
+> 사용자 검수 대기 항목: ~~jumpanddash 경계~~ (확정: jump 9~16/dash 9~11+14~25+역순/doublejump 25~31/fall 31~39), ~~idle/walk 시트 셀 크기~~ (확정: walk 시트 24셀), ~~attack 클립 길이~~ (확정: 전부 재생), jump/doublejump/fall 높이차 연동(IsFalling 기준).
 
 ### Wave 1: 스프라이트 임포트 설정
 
-#### Todo 1: PPU 100 통일 + jump pivot 정렬
-- [x] 1. **File/Directory**: `Assets/sprite/player/idle.png`, `revision-walking.png`, `jump.png` (+ .meta)
-  What to do: 에디터 라이브에서 TextureImporter 설정 변경 →
-  - 3개 파일 `spritePixelsToUnits` 149.25 → **100** (SerializedObject로 `m_SpritePixelsToUnits` 설정 후 Apply)
-  - `jump.png`만 추가로 sprite pivot → **(0.5, 0.5)** (현재 (0,0) — idle/walk와 불일치, 점프 시 캐릭터 어긋남 원인)
-  Must NOT do: .meta 파일 직접 편집 (에디터 라이브 중 — unity-cli 스킬 원칙), PPU 이외 임포트 설정 변경 (filterMode/compression/alpha 유지)
-  Parallelization: Wave 1 | Blocked by: 에디터 상태 ready | Blocks: 2,3,5
-  References: Unity CLI `unity status` (state=ready 확인) → `unity command eval` + SerializedObject/TextureImporter API (선례: Assets/Editor/EnemyPrefabBuilder.cs의 SerializedObject 패턴); 현재 값 idle.png.meta:63, jump.png.meta:63,120
-  Acceptance criteria: 3개 meta에서 `spritePixelsToUnits: 100`, jump.png.meta에서 `spritePivot: {x: 0.5, y: 0.5}` 확인 (에디터 인스펙터 또는 AssetDatabase로 검증)
-  QA scenarios: happy = 에디터 라이브에서 텍스처 인스펙터 PPU=100 표시, 스프라이트가 100px = 1 유닛으로 렌더링 / failure = PPU 미반영 시 AssetDatabase.Refresh() 후 재적용, pivot 미반영 시 jump.png만 별도 재설정, Evidence .omo/evidence/task-1-player-sprite-animation.log
-  Commit: Y | `config: set player sprite PPU to 100 and fix jump pivot`
+#### Todo 1: 공격/콤보/대시/점프 PNG 프레임 임포트 설정
+- [x] 1. **File/Directory**: `Assets/sprite/player/player/{attack,combo_attack,jumpanddash/jump,jumpanddash/dash,jumpanddash/doublejump,jumpanddash/fall}/frame_*.png` (+ .meta)
+  What to do: 에디터 라이브에서 TextureImporter 일괄 설정 →
+  - `spriteImportMode` = Single (개별 프레임 그대로), `spritePixelsToUnits` = **100**, `spritePivot` = **(0.5, 0.5)**
+  - combo_attack은 이미 import됨 — 동일 설정인지 확인 후 정렬만 (불일치 시 통일, 기존 meta 수정 방향)
+  - 파일명 순서 유지 (`frame_000` 정렬 — 어휘순/숫자 정렬 이슈 확인: 0~73, 000~103)
+  Must NOT do: readOnly/재슬라이스, filterMode/compression 변경, attack 파이널 시트와 무관한 설정
+  Parallelization: Wave 1 | Blocked by: 에디터 ready | Blocks: 3
+  References: Unity CLI `unity status` → `unity command eval` + TextureImporter/SerializedObject (선례: Assets/Editor/EnemyPrefabBuilder.cs, 기존 v1 Todo 1)
+  Acceptance criteria: 대상 PNG 메타가 전부 PPU 100 + pivot (0.5,0.5), 프레임 파일명 순서가 클립 생성 순서와 일치 (AssetDatabase.LoadAllAssetsAtPath 검증)
+  QA scenarios: happy = 인스펙터에서 프레임별 스프라이트 분리 확인 / failure = PPU 미반영 시 AssetDatabase.Refresh() 후 재적용, Evidence .omo/evidence/task-7-v2-todo1.log
+  Commit: Y | `config: import player attack/combo/dash/jump sprites at PPU 100`
 
-### Wave 2: 애니메이션 클립 + 컨트롤러 생성
+#### Todo 2: idle/walk 스프라이트 시트 슬라이스
+- [x] 2. **File/Directory**: `Assets/sprite/player/player/{idle/sprite sheets/idle.png, walk/sprite sheets/walk.png}` (+ .meta)
+  What to do: 시트 크기 확인 후 슬라이스 —
+  - **idle.png 460×55 = 10셀 × 46px** (aseprite: 10프레임, 64×64, 60ms 확정 — 아날시스: 460/10=46셀, 투명 분리자로 셀 경계 일치 확인)
+  - **walk.png 180×348 = 4열 × 6행 배치 (45×58 셀)** — 단 aseprite 소스는 26프레임(53×64, 50ms)으로 시트와 프레임 수 불일치(24 vs 26) → **에디터에서 스프라이트 에디터로 실제 셀 그리드 확인 필수** (누락/중복 프레임 여부, 셀 크기 확정)
+  - `spriteImportMode` = Multiple + Sprite Editor 슬라이스 (셀 기반, pivot (0.5,0.5)), PPU 100
+  - walk 옆 `from idle.png`(90×58) 존재 — 용도 불명, 범위 제외(건드리지 않음)
+  Must NOT do: 시트 원본 수정/리네임, 추측으ロ 슬라이스 고정 (사용자 확인 전 적용 금지)
+  Parallelization: Wave 1 | Blocked by: 에디터 ready + 사용자 규격 확인 | Blocks: 3
+  References: Unity Sprite Editor API (TextureImporter.spritesheet, SecondarySpriteTexture), 기존 v1 idel/walk 참조 해제 상태
+  Acceptance criteria: 슬라이스된 스프라이트 수 = 셀 그리드 수, 이름 규칙 `idle_0..N` / `walk_0..N`, pivot 통일
+  QA scenarios: happy = 인스펙터에서 그리드 스프라이트 확인 / failure = 셀 크기 오류 시 사용자 확인 값으로 재슬라이스, Evidence .omo/evidence/task-7-v2-todo2.{png,log}
+  Commit: Y | `config: slice idle/walk sprite sheets`
 
-#### Todo 2: PlayerAnimationBuilder.cs — 클립 3개 생성
-- [x] 2. **File/Directory**: `Assets/Editor/PlayerAnimationBuilder.cs` (신규) + `Assets/Animations/PlayerIdle.anim`, `PlayerWalk.anim`, `PlayerJump.anim` (신규)
-  What to do: [MenuItem] 에디터 스크립트 작성 (EnemyPrefabBuilder.cs 선례 방식) →
-  - `AnimationUtility.SetObjectReferenceCurve`로 Sprite 키프레임 생성 (스프라이트 GUID+fileID 참조: idle_0~3, walk_0~7, jump_0~3 — 슬라이스 이름은 meta의 nameFileIdTable과 일치)
-  - PlayerIdle: idle_0~3, 12fps, 루프 (wrapMode Loop)
-  - PlayerWalk: walk_0~7, 12fps, 루프 (wrapMode Loop)
-  - PlayerJump: jump_0~3, 12fps, 루프 (wrapMode Loop) — 점프 클립은 실제 점프 자연스럽게 1회 재생 후 Idle 복귀(전이에서 관리, 클립 자체는 Loop 유지)
-  - 파일 저장: `Assets/Animations/` (PlayerController와 같은 폴더 규칙)
-  Must NOT do: .anim YAML 수작업, EnemyAnimator.controller 수정, 스프라이트 재슬라이스
-  Parallelization: Wave 2 | Blocked by: 1 | Blocks: 3,5 | Can parallelize with: —
-  References: Assets/Editor/EnemyPrefabBuilder.cs (컨트롤러 생성 선례), sprite 메타의 `spriteID: <guid>`/`internalID` (idle.png.meta:127-128 등), AnimationUtility.SetObjectReferenceCurve (UnityEditor API — Editor 폴더 스크립트 필수)
-  Acceptance criteria: `Assets/Animations/PlayerIdle.anim`/`PlayerWalk.anim`/`PlayerJump.anim` 존재, 각각 프레임 수(4/8/4)와 마지막 키프레임 wrapMode Loop 설정 확인 (AssetDatabase.LoadAllAssetsAtPath로 Sprite 키프레임 카운트 검증)
-  QA scenarios: happy = [MenuItem] 실행 → 클립 3개 생성 + 에디터에서 클립 열면 스프라이트 키프레임 보임 / failure = 키프레임 누락 시 SetObjectReferenceCurve의 타임 샘플링(0.0833s 간격) 확인, 잘못된 스프라이트 참조 시 nameFileIdTable 대조, Evidence .omo/evidence/task-2-player-sprite-animation.log
-  Commit: Y | `feat: add player idle/walk/jump animation clips`
+### Wave 2: 애니메이션 클립 + 컨트롤러 재구성
 
-#### Todo 3: PlayerAnimator.controller — 상태 머신
-- [x] 3. **File/Directory**: `Assets/Animations/PlayerAnimator.controller` (신규)
-  What to do: PlayerAnimationBuilder.cs에 컨트롤러 생성 루틴 포함 (또는 별도 MenuItem) →
-  - 파라미터: `Speed` (float, 기본 0), `IsGrounded` (bool, 기본 true)
-  - 상태 3개 + 클립 연결: **Idle**→PlayerIdle, **Walk**→PlayerWalk, **Jump**→PlayerJump, DefaultState = Idle
-  - 전이표 (Worker가 그대로 구현):
+#### Todo 3: PlayerAnimationBuilder.cs — 클립 8개 생성 (새 에셋 기준)
+- [x] 3. **File/Directory**: `Assets/Editor/PlayerAnimationBuilder.cs` (신규/재작성) + `Assets/Animations/PlayerIdle/PlayerWalk/PlayerJump/PlayerDash/PlayerDoubleJump/PlayerFall/PlayerAttack/PlayerComboAttack.anim` (전부 신규)
+  What to do: [MenuItem] 에디터 스크립트 —
+  - 기존 v1 builder 패턴(SetObjectReferenceCurve) 유지하되 **새 에셋 GUID/fileID로 교체**, 기존 `PlayerIdle/Walk/Jump.anim`은 새 에셋 기준으로 **덮어쓰기 (재생성)**
+  - 딜레이를 파일명에서 파싱: `delay-0.06s` → 0.06s 간격 키프레임, `delay-0.07s` → 0.07s (`frame_48_delay-0.02s` 같은 이질 딜레이도 String.Split 후 적용)
+  - 클립 사양 (사용자 확정 프레임 범위):
+    | 클립 | 프레임 (재생 순서) | 간격 | 길이 | 루프 |
+    |---|---|---|---|---|
+    | PlayerIdle | idle_0..9 (10) | 0.06s | 0.6s (aseprite 60ms) | Loop |
+    | PlayerWalk | walk_0..N (시트 24셀 — 에디터 확정) | 0.05s | 시트 확정 후 | Loop |
+    | PlayerJump | jumpanddash/jump/frame_09~16 (8) | 0.07s | 0.56s | **단발 (Once)** |
+    | PlayerDash | **명시적 순서**: dash/frame_09,10,11 → 14~25 → **11,10,09 역순** (18 키프레임, 15 파일 재사용) | 0.07s | 1.26s | **단발 (Once)** |
+    | PlayerDoubleJump | doublejump/frame_25~31 (7) | 0.07s | 0.49s | **단발 (Once)** |
+    | PlayerFall | fall/frame_31~39 (9) | 0.07s | 0.63s | **단발 (Once)** — 높이차는 전이에서 처리 |
+    | PlayerAttack | attack/frame_00~73 (74) | 0.06s | 4.44s | **단발 (Once)** — 전부 재생 확정 |
+    | PlayerComboAttack | combo_attack/frame_000~103 (104) | 0.06s | 6.24s | **단발 (Once)** — 전부 재생 확정 |
+  - **dash는 폴더 정렬이 아니라 명시적 순서 배열 사용** (09,10,11,14..25,11,10,09) — 스프라이트 재사용은 같은 GUID 반복 참조로 구현
+  - jump/doublejump/fall은 프레임 범위가 겹침(25, 31) — 폴더가 분리되어 있으므로 GUID 충돌 없음
+  Must NOT do: .anim YAML 수작업, Enemy 컨트롤러 수정, 기존 PlayerAnimator.controller 손상 (재구성은 Todo 4)
+  Parallelization: Wave 2 | Blocked by: 1,2 | Blocks: 4,5
+  References: v1 builder의 nameFileIdTable/SetObjectReferenceCurve 패턴, 새 에셋 meta의 spriteID/internalID (attack 등은 import 후 생성됨)
+  Acceptance criteria: 클립 6개 존재, 각 클립 프레임 수/딜레이 간격/루프 설정 정확 (AssetDatabase 로드 후 키프레임 카운트/타임 샘플 검증)
+  QA scenarios: happy = [MenuItem] → 클립 6개 생성 + 에디터에서 키프레임 확인 / failure = 프레임 누락 시 파일명 정렬 재확인, Evidence .omo/evidence/task-7-v2-todo3.log
+  Commit: Y | `feat: rebuild player animation clips with new assets`
+
+#### Todo 4: PlayerAnimator.controller 재구성 — 상태 8개 + 파라미터 6개
+- [x] 4. **File/Directory**: `Assets/Animations/PlayerAnimator.controller` (재작성)
+  What to do: 기존 컨트롤러(3상태)를 확장 —
+  - 파라미터: `Speed` (float), `IsGrounded` (bool), `IsAttacking` (bool), `IsComboAttacking` (bool), `IsDashing` (bool), **`IsFalling` (bool — velocity.y < 0 감지, 점프/2단점프/낙하 분기에 사용)** — 기존 Speed/IsGrounded 유지, 4개 추가
+  - 상태: **Idle**(PlayerIdle), **Walk**(PlayerWalk), **Jump**(PlayerJump), **DoubleJump**(PlayerDoubleJump), **Fall**(PlayerFall), **Dash**(PlayerDash), **Attack**(PlayerAttack), **ComboAttack**(PlayerComboAttack) — Default = Idle
+  - 전이표 (높이차 대응: Jump/DoubleJump 상승부 도중 velocity.y<0 → Fall 전이, 맨 아래 높이와 무관하게 낙하 상태로 스위치):
     | From | To | 조건 |
     |---|---|---|
-    | Idle | Walk | `Speed > 0.1` |
-    | Walk | Idle | `Speed < 0.1` |
-    | Idle | Jump | `IsGrounded == false` |
-    | Walk | Jump | `IsGrounded == false` |
-    | Jump | Idle | `IsGrounded == true && Speed < 0.1` |
-    | Jump | Walk | `IsGrounded == true && Speed > 0.1` |
-  - 전이 duration 0.05~0.1 (끊김 없음 유지)
-  Must NOT do: bool 파라미터 4개짜리 Enemy 패턴 복사 (Speed float + IsGrounded bool 고정), 클립 미연결 상태로 저장
-  Parallelization: Wave 2 | Blocked by: 2 | Blocks: 5 | Can parallelize with: —
-  References: Assets/Animations/EnemyAnimator.controller (AnimatorController YAML 구조: 1107 상태머신/1102 상태/1101 전이/9100000 컨트롤러), UnityEditor.Animations API (AnimatorController.CreateAnimatorControllerAtPath, AddParameter, AddMotion 등)
-  Acceptance criteria: 컨트롤러에 파라미터 Speed/IsGrounded + 상태 3개 + 전이 6개, 각 상태 m_Motion이 해당 클립 GUID 참조, default state Idle
-  QA scenarios: happy = 에디터 Animator 창에서 3상태/6전이 그래프 확인, 클립 연결 확인 / failure = 전이 누락 시 AddTransition 조건 확인, 클립 미연결 시 m_Motion 값 확인, Evidence .omo/evidence/task-3-player-sprite-animation.log
-  Commit: Y | `feat: add player animator controller`
+    | Any | Attack | `IsAttacking == true` |
+    | Any | ComboAttack | `IsComboAttacking == true` |
+    | Attack | Idle | `IsAttacking == false` |
+    | ComboAttack | Idle | `IsComboAttacking == false` |
+    | Idle | Walk | `Speed > 0.1 && IsAttacking == false && IsComboAttacking == false` |
+    | Walk | Idle | `Speed < 0.1 && IsAttacking == false && IsComboAttacking == false` |
+    | Any | Dash | `IsDashing == true` |
+    | Dash | Idle/Walk | `IsDashing == false` (Speed에 따라) |
+    | Idle/Walk | Jump | `IsGrounded == false && IsFalling == false && IsDashing == false && IsAttacking == false && IsComboAttacking == false` |
+    | Jump | Fall | `IsFalling == true` (정점 통과) |
+    | Any(Jump) | DoubleJump | `IsGrounded == false && (2단 점프 입력)` — PlayerController가 IsFalling 토글 대신 **IsDoubleJumping** 트리거/딜레이 또는 IsGrounded 유지 방식으로 분기 (구현 시 결정, 파라미터 추가 가능) |
+    | DoubleJump | Fall | `IsFalling == true` (2단 정점 통과 — 상승이 짧으므로 IsFalling이 4프레임 이내 켜짐) |
+    | Fall | Idle/Walk | `IsGrounded == true` (Speed에 따라) |
+  - 전이 duration 0.05~0.1, 공격/점프/대시/낙하 클립은 Loop 해제(단발)이므로 Exit Time 미사용(전이 즉시)
+  Must NOT do: bool 4개짜리 Enemy 패턴 복사, 클립 미연결 상태로 저장
+  Parallelization: Wave 2 | Blocked by: 3 | Blocks: 6 | Can parallelize with: 5
+  References: UnityEditor.Animations API (기존 v1 Todo 3), 기존 컨트롤러의 Speed/IsGrounded 파라미터 유지
+  Acceptance criteria: 파라미터 5개 + 상태 6개 + 전이 전체, 각 m_Motion이 새 클립 GUID 참조, Default Idle
+  QA scenarios: happy = Animator 창에서 6상태 그래프 확인 / failure = 전이 누락 시 조건 확인, Evidence .omo/evidence/task-7-v2-todo4.log
+  Commit: Y | `feat: rebuild player animator controller with attack states`
 
 ### Wave 3: 코드 연동 + 프리팹 적용
 
-#### Todo 4: PlayerController.cs Animator 연동
-- [x] 4. **File/Directory**: `Assets/Scripts/PlayerController.cs` (수정)
-  What to do: 최소 수정 —
-  - `[Header("Animation")] [SerializeField] private Animator animator;` 추가 (없으면 Awake에서 GetComponent)
-  - Update() 끝에: `animator.SetFloat("Speed", Mathf.Abs(moveInput)); animator.SetBool("IsGrounded", isGrounded);` — 단, isGrounded는 FixedUpdate 갱신이므로 CheckGrounded 결과를 그대로 사용
-  - 좌우 반전: `if (moveInput != 0) transform.localScale = new Vector3(Mathf.Sign(moveInput), 1f, 1f);` (Update에서 — **localScale.x 부호 유지 필수** — PlayerCombat.cs:101,179가 공격 방향 판정에 사용)
-  Must NOT do: moveSpeed/jumpForce/maxJumps 값 변경, 물리(질량/중력/interpolate) 변경, Update/FixedUpdate 구조 변경, SpriteRenderer.flipX 방식으로 반전 (localScale과 혼용 금지)
-  Parallelization: Wave 3 | Blocked by: 2 (파라미터 명세) | Blocks: 5 | Can parallelize with: 3
-  References: Assets/Scripts/PlayerController.cs:29-47 (Update/FixedUpdate 구조), :60-61 (IsGrounded/MoveInput — 이미 존재, 중복 추가 금지), Assets/Scripts/PlayerCombat.cs:101,179 (localScale.x 의존 — sway 주의)
-  Acceptance criteria: 빌드 컴파일 에러 0 (배치 컴파일 또는 에디터 콘솔), 프리팹/씬의 Player 인스턴스에서 Animator 파라미터가 이동/점프 상태와 연동 (Play Mode에서 Inspector 확인)
-  QA scenarios: happy = Play Mode에서 가만히(Speed=0/Idle), 이동(Speed=1/Walk), 점프(IsGrounded=false/Jump) 파라미터 변화 / failure = 컴파일 에러 시 구문 확인, 애니메이션 미전환 시 파라미터 값 로그로 확인, Evidence .omo/evidence/task-4-player-sprite-animation.log
-  Commit: Y | `feat: wire player controller to animator`
+#### Todo 5: PlayerCombat.cs + PlayerController.cs 입력/Animator 연동 — Fire2→콤보, 패링→E, 이단점프/낙하 분기
+- [x] 5. **File/Directory**: `Assets/Scripts/PlayerCombat.cs`, `Assets/Scripts/PlayerController.cs` (수정)
+  What to do: **게임플레이 판정/속도/점프력 로직 불변, 입력 바인딩/Animator 연동만 변경** —
+  - `HandleAttackInput`: Fire1 유지 (기존)
+  - `HandleComboInput`(신규): `Input.GetButtonDown("Fire2")` + 쿨다운 체크 → 콤보 어택 상태 시작 (`isComboAttacking = true`, 공격 판정은 기존 PerformAttack 판정 로직 재사용 or 콤보용 복사 — 데미지/쿨다운 값 불변)
+  - `HandleParryInput`: `Input.GetButtonDown("Fire2")` → `Input.GetKeyDown(KeyCode.E)`로 교체
+  - PlayerCombat `Update()`에 상태 갱신: `IsAttacking`/`IsComboAttacking` 종료 타이머 관리 (기존 attackEndTime 패턴 확장) + `animator.SetBool("IsAttacking", ...)`, `SetBool("IsComboAttacking", ...)`
+  - PlayerController: **IsFalling** 갱신 (`!IsGrounded && rb.velocity.y < 0` → true — Jump/DoubleJump 상승 도중 정점 통과 감지, 공중 어디서든 2단 점프든 높이와 무관하게 동일 낙하 상태로 전이됨), **IsDashing** 연동 (대시 입력이 기존에 있다면 유지/없다면 IsDashing 파라미터는 false 상시 — 대시 클립 재생은 Dash 상태/파라미터로)
+  - 2단 점프: 기존 maxJumps=2 공중 점프 로직 유지 — Animator가 Jump 상태에서 2단 입력 시 재점프 모션 재생(IsGrounded==false && 두 번째 점프 트리거). 정확한 파라미터 방식은 Todo 4 구현 중 결정
+  - Animator 연동: `animator.SetBool("IsAttacking", isAttacking)`, `SetBool("IsComboAttacking", isComboAttacking)`, `SetBool("IsFalling", isFalling)`, `SetBool("IsDashing", isDashing)`
+  Must NOT do: attackDamage/attackRange/attackCooldown/parryWindow* 값 변경, TryParry/OnParrySuccess 로직 수정, VFX/OverlapCircle 판정 변경, Fire1 공격 바인딩 변경, maxJumps/jumpForce/moveSpeed 변경
+  Parallelization: Wave 3 | Blocked by: 3 (파라미터 명세) | Blocks: 6 | Can parallelize with: 4
+  References: Assets/Scripts/PlayerCombat.cs:60-92 (Update/입력부), :94-123 (PerformAttack), :141-162 (TryParry), 기존 input 바인딩 (ProjectSettings/InputManager Fire1/Fire2)
+  Acceptance criteria: 컴파일 에러 0, 좌클릭=attack/우클릭=combo/E=parry 매핑, IsAttacking/IsComboAttacking/IsFalling/IsDashing 파라미터 실시간 갱신
+  QA scenarios: happy = Play Mode에서 입력별 상태 전환 확인 / failure = 버튼 미인식 시 InputManager 매핑 확인, Evidence .omo/evidence/task-7-v2-todo5.log
+  Commit: Y | `feat: rebind player combat input (Fire2 combo, E parry) and wire animator`
 
-#### Todo 5: Player.prefab 스프라이트 + Animator 적용
-- [x] 5. **File/Directory**: `Assets/Prefabs/Player.prefab` (수정 — 에디터 API 경유)
-  What to do: 에디터 라이브에서 Prefab을 열고 (또는 ScriptableObject/직렬화 API로) —
-  - SpriteRenderer.sprite = `idle_0` (Assets/sprite/player/idle.png 내부ID 8793639957104055765)
-  - SpriteRenderer.sortingOrder 0 유지, color 흰색(1,1,1,1)으로 복원 (현재 파란색 (0.2,0.6,1) — PlayerHealth가 originalColor로 저장하므로 프리팹 기본값을 흰색으로)
-  - Animator 컴포넌트 추가 + `runtimeAnimatorController` = PlayerAnimator.controller
-  - 기존 컴포넌트(PlayerController/PlayerCombat/PlayerHealth/Rigidbody2D/BoxCollider2D/groundCheck) 전부 유지
-  - Prefab 저장 (PrefabUtility.SavePrefabAsset)
-  Must NOT do: .prefab YAML 직접 편집 (에디터 라이브 — unity-cli 원칙), PlayerHealth/PlayerCombat 필드 변경, 콜라이더/리지드바디 크기 변경
-  Parallelization: Wave 3 | Blocked by: 2,3,4 | Blocks: 6
-  References: Assets/Prefabs/Player.prefab:72-130 (SpriteRenderer), :131-157 (Rigidbody2D), color 현재값 :122, idle_0 내부ID idle.png.meta:127-128, Animator API (GameObject.AddComponent<Animator> + runtimeAnimatorController)
-  Acceptance criteria: 프리팹 YAML에서 SpriteRenderer m_Sprite가 idle_0 내부ID 참조, color (1,1,1,1), Animator 컴포넌트 + 컨트롤러 GUID 연결 — 에디터 재오픈 후에도 유지
-  QA scenarios: happy = 씬의 Player가 더 이상 파란 사각형이 아니라 캐릭터 스프라이트로 보임, Animator 창에 컨트롤러 연결 표시 / failure = 스프라이트 미표시 시 m_Sprite 참조/매터리얼 확인, Animator 미연결 시 GUID 대조, Evidence .omo/evidence/task-5-player-sprite-animation.png
-  Commit: Y | `feat: apply sprites and animator to player prefab`
+#### Todo 6: Player.prefab 적용 — 컨트롤러/스프라이트 교체
+- [x] 6. **File/Directory**: `Assets/Prefabs/Player.prefab` (수정 — 에디터 API 경유)
+  What to do: 에디터 라이브에서 —
+  - Animator.runtimeAnimatorController → 새 PlayerAnimator.controller
+  - SpriteRenderer.sprite → idle_0 (슬라이스된 idle.png의 0번 프레임)
+  - 기존 컴포넌트 전부 유지 (PlayerController/PlayerCombat/PlayerHealth/Rigidbody2D/BoxCollider2D/groundCheck)
+  Must NOT do: .prefab YAML 직접 편집, PlayerHealth/PlayerCombat 필드 변경, 콜라이더/리지드바디 크기 변경
+  Parallelization: Wave 3 | Blocked by: 3,4,5 | Blocks: 7
+  References: v1 Todo 5 선례 (AssetDatabase/PrefabUtility API), 새 idle_0 내부ID (Todo 2 결과)
+  Acceptance criteria: 프리팹 YAML에서 새 컨트롤러 GUID + idle_0 스프라이트 참조, 재오픈 후 유지
+  QA scenarios: happy = 씬 Player가 캐릭터 스프라이트로 표시 + Animator 창 6상태 / failure = 참조 끊김 시 GUID 대조, Evidence .omo/evidence/task-7-v2-todo6.png
+  Commit: Y | `feat: apply new animator and sprites to player prefab`
 
 ### Wave 4: QA + 커밋
 
-#### Todo 6: Play Mode 통합 QA
-- [x] 6. **File/Directory**: 전체 (Player 프리팹 + 씬)
-  What to do: 에디터 Play Mode 진입 → 시나리오 3개 실행 (씬에 Player 인스턴스가 있어야 함 — Main.unity의 Player가 프리팹 인스턴스인지 확인, 아니면 프리팹 오버라이드 반영):
-  - S1 Idle: 입력 없이 대기 → Speed=0, IsGrounded=true, Idle 애니메이션 재생 (정지 프레임 유지/루프)
-  - S2 Walk: 좌우 이동 (A/D) → Speed>0, Walk 루프, 최대 이동 중에도 끊김 없음
-  - S3 Jump: 점프(스페이스, 이단점프 포함) → IsGrounded=false, Jump 재생 → 착지 시 Idle/Walk 복귀 (Speed에 따라)
-  - 추가: 좌우 반전 시 캐릭터 뒤집힘 + 공격 방향(PlayerCombat) 일치, 콘솔 에러 0, 스프라이트가 콜라이더(1×1)와 심하게 어긋나지 않음
-  Must NOT do: 게임플레이 로직 수정, 씬 저장 (Main.unity 범위 외 — 단, 프리팹 변경사항이 씬 인스턴스에 반영 안 되면 프리팹 오버라이드만 갱신)
-  Parallelization: Wave 4 | Blocked by: 5
-  References: combat-platformer Wave 6 통합 테스트 패턴 (.omo/plans/combat-platformer.md:351-366), Evidence 경로 규칙
-  Acceptance criteria: S1/S2/S3 전부 PASS + 콘솔 에러 0 + 스크린샷(Idle/Walk/Jump 각 1장) + 에디터 로그 저장 — 실패 시 해당 Wave todo로 환류
-  QA scenarios: happy = 3시나리오 PASS (파라미터 Inspector/로그로 확인) / failure = Jump→Idle 복귀 안 되면 전이 조건(Speed 임계 0.1) 확인, Walk 중 끊김/점프 시 스프라이트 점프(어긋남) 시 pivot/PPU 재확인, Evidence .omo/evidence/task-6-player-sprite-animation.{png,log}
-  Commit: Y | `test: verify player sprite animation playback`
+#### Todo 7: Play Mode 통합 QA
+- [x] 7. **File/Directory**: 전체 (Player 프리팹 + 씬)
+  What to do: 에디터 Play Mode 진입 → 시나리오:
+  - S1 좌클릭: 공격 클립 재생 → 종료 후 Idle 복귀
+  - S2 우클릭: 콤보 클립 재생 → 종료 후 Idle 복귀 (좌클릭과 겹치지 않음)
+  - S3 E키: 패링 동작 (기존 패링 테스트 시나리오 재사용)
+  - S4 이동/점프/2단점프/낙하/대시: Speed/IsGrounded/IsFalling/IsDashing 전환 정상, Jump→Fall 정점 전이, 2단점프 모션 재생, Dash 상태 전이 충돌 없음
+  - S5 좌우 반전 유지 (localScale 기준, PlayerCombat 방향 판정 일치)
+  - 콘솔 에러 0, 스크린샷 (Attack/ComboAttack/Idle/Walk/Jump/DoubleJump/Fall/Dash 각 1장)
+  Must NOT do: 게임플레이 로직 수정, 씬 저장 (Main.unity 범위 외)
+  Parallelization: Wave 4 | Blocked by: 6
+  References: v1 Todo 6 패턴, 사용자 결정(입력 바인딩) 명세
+  Acceptance criteria: S1~S5 전부 PASS + 콘솔 에러 0 + 스크린샷 6장 + 에디터 로그 저장
+  QA scenarios: happy = 5시나리오 PASS / failure = 상태 전이 안 되면 전이 조건/파라미터 로그 확인, Evidence .omo/evidence/task-7-player-sprite-animation-v2.{png,log}
+  Commit: Y | `test: verify player attack/combo/parry animation playback`
 
 ## Final verification wave
 > Runs in parallel after ALL todos. ALL must APPROVE. Surface results and wait for the user's explicit okay before declaring complete.
-- [x] F1. Plan compliance audit — Todo 1~6 전부 구현, acceptance criteria 충족 (특히 PPU 100, 전이 6개, localScale 반전 유지)
-- [x] F2. Code quality review — PlayerController.cs 최소 수정 원칙 준수, 네임스페이스/SerializeField+Header 컨벤션, 에셋 슬롯 규칙(null 안전) 영향 없음
-- [x] F3. Real manual QA — 에디터 Play Mode에서 Idle/Walk/Jump 전환 + 끊김 없음 + 콜라이더 정렬 (스크린샷 3장)
-- [x] F4. Scope fidelity — 공격 애니메이션/Enemy/씬/VfxSlot 미변경 (Must NOT have 준수)
+- [ ] F1. Plan compliance audit — Todo 1~7 전부 구현, acceptance criteria 충족 (특히 입력 바인딩, 딜레이 반영, PPU 100)
+- [ ] F2. Code quality review — PlayerCombat.cs 최소 수정 원칙(판정 로직 불변) 준수, 네임스페이스/SerializeField+Header 컨벤션
+- [ ] F3. Real manual QA — 에디터 Play Mode에서 좌클릭/우클릭/E/이동/점프/대시 전환 + 끊김 없음 (스크린샷 6장)
+- [ ] F4. Scope fidelity — player/ 폴더 외 미사용, ezgif-split 4.zip/잔여 프레임 미처리, 잔여 범위 준수
 
 ## Commit strategy
 | Todo | 커밋 메시지 |
 |---|---|
-| 1 | `config: set player sprite PPU to 100 and fix jump pivot` |
-| 2 | `feat: add player idle/walk/jump animation clips` |
-| 3 | `feat: add player animator controller` |
-| 4 | `feat: wire player controller to animator` |
-| 5 | `feat: apply sprites and animator to player prefab` |
-| 6 | `test: verify player sprite animation playback` |
+| 1 | `config: import player attack/combo/dash/jump/doublejump/fall sprites at PPU 100` |
+| 2 | `config: slice idle/walk sprite sheets` |
+| 3 | `feat: rebuild player animation clips with new assets` |
+| 4 | `feat: rebuild player animator controller with attack states` |
+| 5 | `feat: rebind player combat input (Fire2 combo, E parry) and wire animator` |
+| 6 | `feat: apply new animator and sprites to player prefab` |
+| 7 | `test: verify player attack/combo/parry animation playback` |
 
-커밋 규칙: AGENTS.md §6 (`타입: 요약`, 작게·자주). 커밋 금지: `.omo/boulder.json`, `.omo/run-continuation/`, `.omo/notepads/`, `error_log.txt`, `Library/`, `Temp/`, `Logs/`, `UserSettings/`, `obj/`. Animations/EnemyAnimator.controller, Editor/EnemyPrefabBuilder.cs 등 본 작업과 무관한 미커밋 변경은 **별도 커밋으로 분리** (이번 범위에 섞지 않음).
-
-## Success criteria
-1. 에디터 Play Mode에서 플레이어가 **캐릭터 스프라이트**(파란 사각형 아님)로 표시됨
-2. Idle → Walk → Jump 전환이 끊김 없이 자연스럽게 재생됨 (컨트롤러 전이 6개 정상 동작)
-3. 좌우 이동 시 캐릭터 방향 반전 + 공격 방향(PlayerCombat) 일치 유지
-4. 이동/점프 조작감 불변 (moveSpeed 8 / jumpForce 14 / maxJumps 2 유지, 물리 설정 불변)
-5. 콘솔 에러 0, 임포트 설정/프리팹/클립/컨트롤러가 커밋되어 재오픈 후에도 유지
+커밋 규칙: AGENTS.md §6 (`타입: 요약`, 작게·자주). 커밋 금지: `.omo/boulder.json`, `.omo/run-continuation/`, `.omo/notepads/`, `error_log.txt`, `Library/`, `Temp/`, `Logs/`, `UserSettings/`, `obj/`. jumpanddash 분리(파일 이동)는 **별도 커밋으로 분리** (이번 범위에 섞지 않음).
 
 ## Success criteria
+1. 에디터 Play Mode에서 **좌클릭 = 공격, 우클릭 = 콤보 어택** 애니메이션 재생, **E = 패링** 동작
+2. Idle/Walk/Jump/DoubleJump/Fall/Dash/Attack/ComboAttack **8상태** 전환이 끊김 없이 자연스럽게 재생 (컨트롤러 전이 정상, 특히 Jump→Fall 높이차 전이)
+3. 이동/점프 조작감 불변 (moveSpeed 8 / jumpForce 14 / maxJumps 2 유지), 물리 설정 불변
+4. 공격/패링 판정 로직 불변 (입력 바인딩만 변경)
+5. dash 클립이 `09,10,11→14~25→11,10,09` 역순 재생 포함 18 키프레임으로 생성됨
+6. 콘솔 에러 0, 임포트 설정/프리팹/클립/컨트롤러가 커밋되어 재오픈 후에도 유지
+
+## 사용자 검수 대기 항목 (중요)
+1. ~~**jumpanddash 경계**~~ → **확정됨**: jump 9~16 / dash 9~11+14~25+11~9역순 / doublejump 25~31 / fall 31~39 (폴더 분리 + 복제 완료)
+2. ~~**idle/walk 시트 셀 크기**~~ → **확정됨**: walk 시트 24셀(4열×6행 45×58) 기준, idle 10셀(46px)
+3. ~~**attack 클립 길이**~~ → **확정됨**: attack 74프레임(4.44s) + combo 104프레임(6.24s) **전부 재생**
+4. **`ezgif-split 4.zip`(106 GIF)**: 처리 방식 결정 대기 (범위 제외 상태)
+5. **`jumpanddash` 잔여 18장** (0~8, 40~48): idle 중복으로 보고 범위 제외 — 삭제/유지 결정 대기
+6. **jump/doublejump/fall 높이차 연동**: 2단점프는 더 높이 뜨므로 Fall 도달 시간이 다름 — IsFalling(velocity.y<0) 기반으로 높이 무관 전이 (구현 중 세부 확정, QA에서 검증)
