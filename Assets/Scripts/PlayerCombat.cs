@@ -28,17 +28,25 @@ namespace EpsilonGame
         [SerializeField] private LayerMask enemyLayer;
         [SerializeField] private Transform attackPoint;
 
+        [Header("Animation")]
+        [SerializeField] private Animator animator;
+
         // 내부 상태
         private float lastAttackTime = -999f;
         private float lastParryTime = -999f;
         private float parryWindowEndTime = -999f;
         private bool isAttacking = false;
+        private bool isComboAttacking = false;
         private float attackEndTime = -999f;
+        private float comboAttackEndTime = -999f;
+        private float attackClipLength = -1f;
+        private float comboAttackClipLength = -1f;
         private bool parryWindowActive = false;
         private GameObject telegraphedEnemy = null;
 
         // 공개 프로퍼티
         public bool IsAttacking => isAttacking;
+        public bool IsComboAttacking => isComboAttacking;
         public bool IsParrying => parryWindowActive;
         public bool HasParryWindow => parryWindowActive && Time.unscaledTime < parryWindowEndTime;
 
@@ -48,8 +56,28 @@ namespace EpsilonGame
             if (attackPoint == null)
                 attackPoint = transform;
 
+            if (animator == null)
+                animator = GetComponent<Animator>();
+            CacheClipLengths();
+
             // CombatEvents 구독
             CombatEvents.OnEnemyAttackTelegraph += OnEnemyTelegraph;
+        }
+
+        // 공격 지속 = 클립 전체 재생 시간 (attackDuration 폴백)
+        private void CacheClipLengths()
+        {
+            if (animator == null || animator.runtimeAnimatorController == null)
+                return;
+
+            foreach (var clip in animator.runtimeAnimatorController.animationClips)
+            {
+                if (clip.name == "PlayerAttack") attackClipLength = clip.length;
+                else if (clip.name == "PlayerComboAttack") comboAttackClipLength = clip.length;
+            }
+
+            if (attackClipLength <= 0f) attackClipLength = attackDuration;
+            if (comboAttackClipLength <= 0f) comboAttackClipLength = attackDuration;
         }
 
         private void OnDestroy()
@@ -71,11 +99,15 @@ namespace EpsilonGame
             {
                 PerformAttack();
             }
+            else if (Input.GetButtonDown("Fire2") && CanComboAttack())
+            {
+                PerformComboAttack();
+            }
         }
 
         private void HandleParryInput()
         {
-            if (Input.GetButtonDown("Fire2") && CanParry())
+            if (Input.GetKeyDown(KeyCode.E) && CanParry())
             {
                 TryParry();
             }
@@ -83,7 +115,12 @@ namespace EpsilonGame
 
         private bool CanAttack()
         {
-            return !isAttacking && Time.unscaledTime >= lastAttackTime + attackCooldown;
+            return !isAttacking && !isComboAttacking && Time.unscaledTime >= lastAttackTime + attackCooldown;
+        }
+
+        private bool CanComboAttack()
+        {
+            return !isAttacking && !isComboAttacking && Time.unscaledTime >= lastAttackTime + attackCooldown;
         }
 
         private bool CanParry()
@@ -94,13 +131,36 @@ namespace EpsilonGame
         private void PerformAttack()
         {
             isAttacking = true;
-            attackEndTime = Time.unscaledTime + attackDuration;
+            attackEndTime = Time.unscaledTime + attackClipLength;
             lastAttackTime = Time.unscaledTime;
+
+            if (animator != null)
+                animator.SetBool("IsAttacking", true);
 
             // 플레이어 공격 이벤트 발화 (슬로우 모션/카메라 연출 트리거)
             CombatEvents.RaiseOnPlayerAttack();
 
-            // 공격 판정: OverlapCircleAll로 적 감지
+            ResolveAttackHits();
+        }
+
+        private void PerformComboAttack()
+        {
+            isComboAttacking = true;
+            comboAttackEndTime = Time.unscaledTime + comboAttackClipLength;
+            lastAttackTime = Time.unscaledTime;
+
+            if (animator != null)
+                animator.SetBool("IsComboAttacking", true);
+
+            // 플레이어 공격 이벤트 발화 (슬로우 모션/카메라 연출 트리거)
+            CombatEvents.RaiseOnPlayerAttack();
+
+            ResolveAttackHits();
+        }
+
+        // 일반/콤보 공통 판정 + VFX (기존 로직과 동일)
+        private void ResolveAttackHits()
+        {
             Vector2 attackPosition = (Vector2)attackPoint.position + attackOffset * Mathf.Sign(transform.localScale.x);
             Collider2D[] hits = Physics2D.OverlapCircleAll(attackPosition, attackRange, enemyLayer);
 
@@ -127,6 +187,15 @@ namespace EpsilonGame
             if (isAttacking && Time.unscaledTime >= attackEndTime)
             {
                 isAttacking = false;
+                if (animator != null)
+                    animator.SetBool("IsAttacking", false);
+            }
+
+            if (isComboAttacking && Time.unscaledTime >= comboAttackEndTime)
+            {
+                isComboAttacking = false;
+                if (animator != null)
+                    animator.SetBool("IsComboAttacking", false);
             }
         }
 

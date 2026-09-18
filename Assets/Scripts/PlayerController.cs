@@ -48,6 +48,8 @@ namespace EpsilonGame
             {
                 animator.SetFloat("Speed", Mathf.Abs(moveInput));
                 animator.SetBool("IsGrounded", isGrounded);
+                animator.SetBool("IsFalling", !isGrounded && rb.linearVelocity.y < 0f);
+                animator.SetInteger("JumpCount", (int)maxJumps - jumpsRemaining);
             }
 
             // 좌우 반전 (localScale 방식 — PlayerCombat.cs 방향 판정 호환)
