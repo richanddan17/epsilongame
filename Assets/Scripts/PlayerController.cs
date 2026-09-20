@@ -39,7 +39,6 @@ namespace EpsilonGame
         [SerializeField] private float comboDashDuration = 0.24f;
 
         [Header("Ground Check")]
-        [SerializeField] private Transform groundCheck;
         [SerializeField] private float groundCheckRadius = 0.2f;
         [SerializeField] private LayerMask groundLayer;
 
@@ -59,6 +58,7 @@ namespace EpsilonGame
         [SerializeField] private float comboAttackLineDelay = 0.20f;  // combo_attack2_05
 
         private Rigidbody2D rb;
+        private Collider2D col2d;
         private float moveInput;
         private int jumpsRemaining;
         private bool isGrounded;
@@ -85,6 +85,7 @@ namespace EpsilonGame
         private void Awake()
         {
             rb = GetComponent<Rigidbody2D>();
+            col2d = GetComponent<Collider2D>();
             if (animator == null) animator = GetComponent<Animator>();
             playerHealth = GetComponent<PlayerHealth>();
             playerCombat = GetComponent<PlayerCombat>();
@@ -94,6 +95,9 @@ namespace EpsilonGame
             float g = Mathf.Abs(Physics2D.gravity.y) * defaultGravityScale;
             jumpVelocity = Mathf.Sqrt(2f * g * Mathf.Max(0f, jumpHeight));
             doubleJumpVelocity = Mathf.Sqrt(2f * g * Mathf.Max(0f, doubleJumpHeight));
+
+            // 시작 시점 점프 횟수 초기화 (스폰 직후에도 즉시 점프 가능, 착지 시 CheckGrounded가 리셋)
+            jumpsRemaining = (int)maxJumps;
 
             // 대시: 위상별 거리 합 대비 dashDistance 비율로 속도 스케일 (시간 구조 유지)
             float baseDashDistance = dashLeapSpeed * dashLeapTime
@@ -120,14 +124,11 @@ namespace EpsilonGame
                     StartDash();
             }
 
-            if (!isMotionLocked && !isDashing && Input.GetButtonDown("Jump") && jumpsRemaining > 0)
+            // 더블점프 보류: 점프 횟수가 가득 찬 상태(땅 or 낙하 직후)에서만 1회 발동
+            if (!isMotionLocked && !isDashing && Input.GetButtonDown("Jump") && jumpsRemaining >= (int)maxJumps)
             {
-                bool isDoubleJump = jumpsRemaining < maxJumps - 1f;
-                rb.linearVelocity = new Vector2(rb.linearVelocity.x, isDoubleJump ? doubleJumpVelocity : jumpVelocity);
+                rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpVelocity);
                 jumpsRemaining--;
-
-                if (isDoubleJump && doubleJumpFx != null)
-                    StartCoroutine(PlayFxDelayed(doubleJumpFx, doubleJumpFxDelay));
             }
 
             UpdateMotionTriggers();
@@ -340,9 +341,11 @@ namespace EpsilonGame
 
         private void CheckGrounded()
         {
-            if (groundCheck == null) return;
+            if (col2d == null) return;
 
-            isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+            // 씬 인스턴스의 콜라이더 오버라이드(크기/오프셋)와 무관하게 실측 콜라이더 하단을 사용한다
+            Vector2 checkOrigin = new Vector2(col2d.bounds.center.x, col2d.bounds.min.y);
+            isGrounded = Physics2D.OverlapCircle(checkOrigin, groundCheckRadius, groundLayer);
             if (isGrounded)
             {
                 jumpsRemaining = (int)maxJumps;
