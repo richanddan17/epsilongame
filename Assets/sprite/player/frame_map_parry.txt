@@ -1,0 +1,53 @@
+프레임 번호 대응 (새 파일 = 원본 프레임 번호, 딜레이)
+
+[parrying]
+  parrying_00_0.04s = 원본 010  (0.04s)
+  parrying_01_0.03s = 원본 013  (0.03s)
+  parrying_02_0.04s = 원본 014  (0.04s)
+  parrying_03_0.04s = 원본 015  (0.04s)
+  parrying_04_0.04s = 원본 016  (0.04s)
+  parrying_05_0.04s = 원본 017  (0.04s)
+  parrying_06_0.08s = 원본 019  (0.08s)
+  parrying_07_0.04s = 원본 021  (0.04s)
+  parrying_08_0.04s = 원본 023  (0.04s)
+  parrying_09_0.04s = 원본 025  (0.04s)
+  parrying_10_0.04s = 원본 026  (0.04s)
+  parrying_11_0.04s = 원본 027  (0.04s)
+  parrying_12_0.04s = 원본 028  (0.04s)
+
+[parrying_fx]  (Effects 폴더)
+  parrying_fx_00_0.03s  -> parrying_01 과 같은 시각에 시작
+  parrying_fx_01_0.04s  -> parrying_02 과 같은 시각에 시작
+  parrying_fx_02_0.04s  -> parrying_03 과 같은 시각에 시작
+  parrying_fx_03_0.04s  -> parrying_04 과 같은 시각에 시작
+  parrying_fx_04_0.04s  -> parrying_05 과 같은 시각에 시작
+
+[combo_attack2]
+  combo_attack2_00_0.04s = 원본 032  (0.04s)
+  combo_attack2_01_0.04s = 원본 033  (0.04s)
+  combo_attack2_02_0.04s = 원본 034  (0.04s)
+  combo_attack2_03_0.04s = 원본 035  (0.04s)
+  combo_attack2_04_0.04s = 원본 036  (0.04s)
+  combo_attack2_05_0.04s = 원본 037  (0.04s)
+  combo_attack2_06_0.08s = 원본 038  (0.08s)
+  combo_attack2_07_0.08s = 원본 040  (0.08s)
+  combo_attack2_08_0.08s = 원본 042  (0.08s)
+  combo_attack2_09_0.04s = 원본 044  (0.04s)
+  combo_attack2_10_0.04s = 원본 045  (0.04s)
+  combo_attack2_11_0.04s = 원본 046  (0.04s)
+  combo_attack2_12_0.04s = 원본 047  (0.04s)
+
+[combo_attack2_fx]  (Effects 폴더)
+  combo_attack2_fx_00_0.04s  -> combo_attack2_00 과 같은 시각에 시작
+  combo_attack2_fx_01_0.04s  -> combo_attack2_01 과 같은 시각에 시작
+  combo_attack2_fx_02_0.04s  -> combo_attack2_02 과 같은 시각에 시작
+  combo_attack2_fx_03_0.04s  -> combo_attack2_03 과 같은 시각에 시작
+  combo_attack2_fx_04_0.04s  -> combo_attack2_04 과 같은 시각에 시작
+  combo_attack2_fx_05_0.04s  -> combo_attack2_05 과 같은 시각에 시작
+  combo_attack2_fx_06_0.08s  -> combo_attack2_06 과 같은 시각에 시작
+
+[combo_attack2_line]  (Effects 폴더)
+  combo_attack2_line_00_0.04s  -> combo_attack2_05 과 같은 시각에 시작
+  combo_attack2_line_01_0.08s  -> combo_attack2_06 과 같은 시각에 시작
+  combo_attack2_line_02_0.08s  -> combo_attack2_07 과 같은 시각에 시작
+  combo_attack2_line_03_0.08s  -> combo_attack2_08 과 같은 시각에 시작

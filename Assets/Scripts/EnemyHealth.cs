@@ -20,6 +20,7 @@ namespace EpsilonGame
         private Collider2D col;
         private int currentHealth;
         private bool isDead;
+        private bool isGrabImmuned;
         private float deathTimer;
 
         public int CurrentHealth => currentHealth;
@@ -54,9 +55,17 @@ namespace EpsilonGame
             }
         }
 
+        /// <summary>
+        /// 그랩 연출 중 피격 무시 설정 (PlayerCombat 그랩 콤보용)
+        /// </summary>
+        public void SetGrabImmunity(bool state)
+        {
+            isGrabImmuned = state;
+        }
+
         public void TakeDamage(int amount, Vector2 direction, float knockback)
         {
-            if (isDead) return;
+            if (isDead || isGrabImmuned) return;
 
             currentHealth = Mathf.Max(0, currentHealth - amount);
 

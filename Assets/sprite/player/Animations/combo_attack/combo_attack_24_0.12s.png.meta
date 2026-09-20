@@ -1,0 +1,1820 @@
+fileFormatVersion: 2
+guid: 92c56aad6c253584eb9dc81c41148c10
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -5384718867153784827
+    second: combo_attack_24_0.12s_0
+  - first:
+      213: 8689209493971557569
+    second: combo_attack_24_0.12s_1
+  - first:
+      213: 7329203708732118868
+    second: combo_attack_24_0.12s_2
+  - first:
+      213: 866855768687717945
+    second: combo_attack_24_0.12s_3
+  - first:
+      213: 5195914540724789228
+    second: combo_attack_24_0.12s_4
+  - first:
+      213: -8174819133922401123
+    second: combo_attack_24_0.12s_5
+  - first:
+      213: 5488439090311162216
+    second: combo_attack_24_0.12s_6
+  - first:
+      213: 1879668993937176178
+    second: combo_attack_24_0.12s_7
+  - first:
+      213: 1295578098370082345
+    second: combo_attack_24_0.12s_8
+  - first:
+      213: 2429901107599779323
+    second: combo_attack_24_0.12s_9
+  - first:
+      213: 3220184054614682750
+    second: combo_attack_24_0.12s_10
+  - first:
+      213: -4105815273824063728
+    second: combo_attack_24_0.12s_11
+  - first:
+      213: -5047049913739206880
+    second: combo_attack_24_0.12s_12
+  - first:
+      213: -4073644307230994274
+    second: combo_attack_24_0.12s_13
+  - first:
+      213: -699894218147225273
+    second: combo_attack_24_0.12s_14
+  - first:
+      213: -8113545962419427569
+    second: combo_attack_24_0.12s_15
+  - first:
+      213: 2760664522922808701
+    second: combo_attack_24_0.12s_16
+  - first:
+      213: 7087425848508072924
+    second: combo_attack_24_0.12s_17
+  - first:
+      213: 2251143203369446605
+    second: combo_attack_24_0.12s_18
+  - first:
+      213: 1837858503654036668
+    second: combo_attack_24_0.12s_19
+  - first:
+      213: 2620827855053802070
+    second: combo_attack_24_0.12s_20
+  - first:
+      213: -3613906292728461311
+    second: combo_attack_24_0.12s_21
+  - first:
+      213: -3069714034319633575
+    second: combo_attack_24_0.12s_22
+  - first:
+      213: -387024681104192667
+    second: combo_attack_24_0.12s_23
+  - first:
+      213: -7749159825070710726
+    second: combo_attack_24_0.12s_24
+  - first:
+      213: 8810351803179575716
+    second: combo_attack_24_0.12s_25
+  - first:
+      213: 8005602729765990658
+    second: combo_attack_24_0.12s_26
+  - first:
+      213: -4547881476064933753
+    second: combo_attack_24_0.12s_27
+  - first:
+      213: 5572818283216019876
+    second: combo_attack_24_0.12s_28
+  - first:
+      213: -5785592571539984892
+    second: combo_attack_24_0.12s_29
+  - first:
+      213: 4508182954243459030
+    second: combo_attack_24_0.12s_30
+  - first:
+      213: -2931784035591064537
+    second: combo_attack_24_0.12s_31
+  - first:
+      213: -4119771884477098607
+    second: combo_attack_24_0.12s_32
+  - first:
+      213: -6786463007472645033
+    second: combo_attack_24_0.12s_33
+  - first:
+      213: -1403799341249004867
+    second: combo_attack_24_0.12s_34
+  - first:
+      213: -688169543600655605
+    second: combo_attack_24_0.12s_35
+  - first:
+      213: 9104743878207113625
+    second: combo_attack_24_0.12s_36
+  - first:
+      213: -891679602325017517
+    second: combo_attack_24_0.12s_37
+  - first:
+      213: -9093873900750970003
+    second: combo_attack_24_0.12s_38
+  - first:
+      213: -5045118531051212724
+    second: combo_attack_24_0.12s_39
+  - first:
+      213: -8374863192725461501
+    second: combo_attack_24_0.12s_40
+  - first:
+      213: -916735002145068918
+    second: combo_attack_24_0.12s_41
+  - first:
+      213: -3868151735817390272
+    second: combo_attack_24_0.12s_42
+  - first:
+      213: 4668011742602017368
+    second: combo_attack_24_0.12s_43
+  - first:
+      213: -6166194470097759652
+    second: combo_attack_24_0.12s_44
+  - first:
+      213: -1530328058764199886
+    second: combo_attack_24_0.12s_45
+  - first:
+      213: -331222602313709905
+    second: combo_attack_24_0.12s_46
+  - first:
+      213: -5495012557411680598
+    second: combo_attack_24_0.12s_47
+  - first:
+      213: 4405808890959861298
+    second: combo_attack_24_0.12s_48
+  - first:
+      213: -3607836904851268322
+    second: combo_attack_24_0.12s_49
+  - first:
+      213: -5223989661252049768
+    second: combo_attack_24_0.12s_50
+  - first:
+      213: 2144732270809377686
+    second: combo_attack_24_0.12s_51
+  - first:
+      213: 4950174343806516685
+    second: combo_attack_24_0.12s_52
+  - first:
+      213: 2887382760577841244
+    second: combo_attack_24_0.12s_53
+  - first:
+      213: 6229375641234146042
+    second: combo_attack_24_0.12s_54
+  - first:
+      213: 6712822565799042818
+    second: combo_attack_24_0.12s_55
+  - first:
+      213: -8434105240234179667
+    second: combo_attack_24_0.12s_56
+  - first:
+      213: 4159187327954347902
+    second: combo_attack_24_0.12s_57
+  - first:
+      213: 4326853804645069057
+    second: combo_attack_24_0.12s_58
+  - first:
+      213: -1777860591039967054
+    second: combo_attack_24_0.12s_59
+  - first:
+      213: -8199351472490347248
+    second: combo_attack_24_0.12s_60
+  - first:
+      213: 5883778840051249326
+    second: combo_attack_24_0.12s_61
+  - first:
+      213: -1125359177505163014
+    second: combo_attack_24_0.12s_62
+  - first:
+      213: 8036142407297373885
+    second: combo_attack_24_0.12s_63
+  - first:
+      213: 3057487626496844080
+    second: combo_attack_24_0.12s_64
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 9
+  spritePivot: {x: 0.8965, y: 0.1143}
+  spritePixelsToUnits: 400
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: combo_attack_24_0.12s_0
+      rect:
+        serializedVersion: 2
+        x: 547
+        y: 767
+        width: 18
+        height: 214
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 50074f348b2a545b0800000000000000
+      internalID: -5384718867153784827
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: combo_attack_24_0.12s_1
+      rect:
+        serializedVersion: 2
+        x: 543
+        y: 727
+        width: 6
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1cc50235ff5469870800000000000000
+      internalID: 8689209493971557569
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: combo_attack_24_0.12s_2
+      rect:
+        serializedVersion: 2
+        x: 523
+        y: 627
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4571479f0ff86b560800000000000000
+      internalID: 7329203708732118868
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: combo_attack_24_0.12s_3
+      rect:
+        serializedVersion: 2
+        x: 523
+        y: 619
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 93e21249ab0b70c00800000000000000
+      internalID: 866855768687717945
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: combo_attack_24_0.12s_4
+      rect:
+        serializedVersion: 2
+        x: 583
+        y: 615
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cef1033eeb89b1840800000000000000
+      internalID: 5195914540724789228
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: combo_attack_24_0.12s_5
+      rect:
+        serializedVersion: 2
+        x: 495
+        y: 595
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d942d7b4f453d8e80800000000000000
+      internalID: -8174819133922401123
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: combo_attack_24_0.12s_6
+      rect:
+        serializedVersion: 2
+        x: 519
+        y: 583
+        width: 6
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8696d5d064ada2c40800000000000000
+      internalID: 5488439090311162216
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: combo_attack_24_0.12s_7
+      rect:
+        serializedVersion: 2
+        x: 587
+        y: 591
+        width: 6
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 276f0f6bdfce51a10800000000000000
+      internalID: 1879668993937176178
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: combo_attack_24_0.12s_8
+      rect:
+        serializedVersion: 2
+        x: 487
+        y: 559
+        width: 10
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 926ff1c8a61daf110800000000000000
+      internalID: 1295578098370082345
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: combo_attack_24_0.12s_9
+      rect:
+        serializedVersion: 2
+        x: 611
+        y: 587
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bf520d5ee2eb8b120800000000000000
+      internalID: 2429901107599779323
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: combo_attack_24_0.12s_10
+      rect:
+        serializedVersion: 2
+        x: 519
+        y: 567
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e7c6fae165460bc20800000000000000
+      internalID: 3220184054614682750
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: combo_attack_24_0.12s_11
+      rect:
+        serializedVersion: 2
+        x: 591
+        y: 575
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 01fe75213c63507c0800000000000000
+      internalID: -4105815273824063728
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: combo_attack_24_0.12s_12
+      rect:
+        serializedVersion: 2
+        x: 611
+        y: 575
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 02f98e708d645f9b0800000000000000
+      internalID: -5047049913739206880
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: combo_attack_24_0.12s_13
+      rect:
+        serializedVersion: 2
+        x: 591
+        y: 563
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e90543ee5128777c0800000000000000
+      internalID: -4073644307230994274
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: combo_attack_24_0.12s_14
+      rect:
+        serializedVersion: 2
+        x: 615
+        y: 563
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7412cf2bae97946f0800000000000000
+      internalID: -699894218147225273
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: combo_attack_24_0.12s_15
+      rect:
+        serializedVersion: 2
+        x: 619
+        y: 547
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f076f214fe4e66f80800000000000000
+      internalID: -8113545962419427569
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: combo_attack_24_0.12s_16
+      rect:
+        serializedVersion: 2
+        x: 487
+        y: 531
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d7556d8c1c9df4620800000000000000
+      internalID: 2760664522922808701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: combo_attack_24_0.12s_17
+      rect:
+        serializedVersion: 2
+        x: 619
+        y: 531
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd3ce3822489b5260800000000000000
+      internalID: 7087425848508072924
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: combo_attack_24_0.12s_18
+      rect:
+        serializedVersion: 2
+        x: 623
+        y: 467
+        width: 34
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dccee5ff0daad3f10800000000000000
+      internalID: 2251143203369446605
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: combo_attack_24_0.12s_19
+      rect:
+        serializedVersion: 2
+        x: 515
+        y: 503
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cb4dab95292618910800000000000000
+      internalID: 1837858503654036668
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: combo_attack_24_0.12s_20
+      rect:
+        serializedVersion: 2
+        x: 591
+        y: 507
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 65a4ee56c0d0f5420800000000000000
+      internalID: 2620827855053802070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: combo_attack_24_0.12s_21
+      rect:
+        serializedVersion: 2
+        x: 487
+        y: 491
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1080f52cf53d8ddc0800000000000000
+      internalID: -3613906292728461311
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: combo_attack_24_0.12s_22
+      rect:
+        serializedVersion: 2
+        x: 591
+        y: 495
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 953d85e895f2665d0800000000000000
+      internalID: -3069714034319633575
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: combo_attack_24_0.12s_23
+      rect:
+        serializedVersion: 2
+        x: 615
+        y: 491
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 56bc9736a1301aaf0800000000000000
+      internalID: -387024681104192667
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: combo_attack_24_0.12s_24
+      rect:
+        serializedVersion: 2
+        x: 511
+        y: 483
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a30aee62234757490800000000000000
+      internalID: -7749159825070710726
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: combo_attack_24_0.12s_25
+      rect:
+        serializedVersion: 2
+        x: 591
+        y: 483
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a9adb62948a44a70800000000000000
+      internalID: 8810351803179575716
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: combo_attack_24_0.12s_26
+      rect:
+        serializedVersion: 2
+        x: 423
+        y: 391
+        width: 66
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2017998644d991f60800000000000000
+      internalID: 8005602729765990658
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: combo_attack_24_0.12s_27
+      rect:
+        serializedVersion: 2
+        x: 507
+        y: 459
+        width: 18
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 788029aa4eda2e0c0800000000000000
+      internalID: -4547881476064933753
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: combo_attack_24_0.12s_28
+      rect:
+        serializedVersion: 2
+        x: 587
+        y: 451
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a1a4e8d3b0a65d40800000000000000
+      internalID: 5572818283216019876
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: combo_attack_24_0.12s_29
+      rect:
+        serializedVersion: 2
+        x: 627
+        y: 459
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 40e6836a53275bfa0800000000000000
+      internalID: -5785592571539984892
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: combo_attack_24_0.12s_30
+      rect:
+        serializedVersion: 2
+        x: 499
+        y: 427
+        width: 14
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d70722f288409e30800000000000000
+      internalID: 4508182954243459030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: combo_attack_24_0.12s_31
+      rect:
+        serializedVersion: 2
+        x: 591
+        y: 439
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 724fe60f3f53057d0800000000000000
+      internalID: -2931784035591064537
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: combo_attack_24_0.12s_32
+      rect:
+        serializedVersion: 2
+        x: 627
+        y: 443
+        width: 6
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 195d91e6c41a3d6c0800000000000000
+      internalID: -4119771884477098607
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: combo_attack_24_0.12s_33
+      rect:
+        serializedVersion: 2
+        x: 631
+        y: 427
+        width: 26
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 75c8346d9d3a1d1a0800000000000000
+      internalID: -6786463007472645033
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: combo_attack_24_0.12s_34
+      rect:
+        serializedVersion: 2
+        x: 595
+        y: 415
+        width: 14
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dbafce0dfe3b48ce0800000000000000
+      internalID: -1403799341249004867
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: combo_attack_24_0.12s_35
+      rect:
+        serializedVersion: 2
+        x: 631
+        y: 411
+        width: 6
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b03b07832712376f0800000000000000
+      internalID: -688169543600655605
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: combo_attack_24_0.12s_36
+      rect:
+        serializedVersion: 2
+        x: 495
+        y: 379
+        width: 18
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9998277715c8a5e70800000000000000
+      internalID: 9104743878207113625
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: combo_attack_24_0.12s_37
+      rect:
+        serializedVersion: 2
+        x: 595
+        y: 407
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 35ca4f1402e10a3f0800000000000000
+      internalID: -891679602325017517
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: combo_attack_24_0.12s_38
+      rect:
+        serializedVersion: 2
+        x: 595
+        y: 383
+        width: 10
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d63ea816ed11cc180800000000000000
+      internalID: -9093873900750970003
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: combo_attack_24_0.12s_39
+      rect:
+        serializedVersion: 2
+        x: 631
+        y: 399
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c40b3fa1d632cf9b0800000000000000
+      internalID: -5045118531051212724
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: combo_attack_24_0.12s_40
+      rect:
+        serializedVersion: 2
+        x: 639
+        y: 395
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 306ea135c4286cb80800000000000000
+      internalID: -8374863192725461501
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: combo_attack_24_0.12s_41
+      rect:
+        serializedVersion: 2
+        x: 635
+        y: 387
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a88e9f36f5a1743f0800000000000000
+      internalID: -916735002145068918
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: combo_attack_24_0.12s_42
+      rect:
+        serializedVersion: 2
+        x: 511
+        y: 371
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0473b499d70915ac0800000000000000
+      internalID: -3868151735817390272
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: combo_attack_24_0.12s_43
+      rect:
+        serializedVersion: 2
+        x: 555
+        y: 367
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 85a352d92fb18c040800000000000000
+      internalID: 4668011742602017368
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: combo_attack_24_0.12s_44
+      rect:
+        serializedVersion: 2
+        x: 555
+        y: 351
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c5258d1acc64d6aa0800000000000000
+      internalID: -6166194470097759652
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: combo_attack_24_0.12s_45
+      rect:
+        serializedVersion: 2
+        x: 247
+        y: 255
+        width: 198
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 238fb831dbe23cae0800000000000000
+      internalID: -1530328058764199886
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: combo_attack_24_0.12s_46
+      rect:
+        serializedVersion: 2
+        x: 447
+        y: 315
+        width: 10
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fa6c28f4cc2476bf0800000000000000
+      internalID: -331222602313709905
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: combo_attack_24_0.12s_47
+      rect:
+        serializedVersion: 2
+        x: 463
+        y: 315
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aae7a2f513bcdb3b0800000000000000
+      internalID: -5495012557411680598
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: combo_attack_24_0.12s_48
+      rect:
+        serializedVersion: 2
+        x: 471
+        y: 319
+        width: 14
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2369be5e7d3942d30800000000000000
+      internalID: 4405808890959861298
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: combo_attack_24_0.12s_49
+      rect:
+        serializedVersion: 2
+        x: 487
+        y: 319
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e1d9bce33736eedc0800000000000000
+      internalID: -3607836904851268322
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: combo_attack_24_0.12s_50
+      rect:
+        serializedVersion: 2
+        x: 499
+        y: 319
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 89422cab419a087b0800000000000000
+      internalID: -5223989661252049768
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: combo_attack_24_0.12s_51
+      rect:
+        serializedVersion: 2
+        x: 519
+        y: 319
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 69be8e313ae93cd10800000000000000
+      internalID: 2144732270809377686
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: combo_attack_24_0.12s_52
+      rect:
+        serializedVersion: 2
+        x: 551
+        y: 319
+        width: 14
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dcdf6daa65d82b440800000000000000
+      internalID: 4950174343806516685
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: combo_attack_24_0.12s_53
+      rect:
+        serializedVersion: 2
+        x: 603
+        y: 319
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c5834de925b021820800000000000000
+      internalID: 2887382760577841244
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: combo_attack_24_0.12s_54
+      rect:
+        serializedVersion: 2
+        x: 611
+        y: 319
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: af28b3c1420337650800000000000000
+      internalID: 6229375641234146042
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: combo_attack_24_0.12s_55
+      rect:
+        serializedVersion: 2
+        x: 631
+        y: 319
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20f9daabe8cb82d50800000000000000
+      internalID: 6712822565799042818
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: combo_attack_24_0.12s_56
+      rect:
+        serializedVersion: 2
+        x: 643
+        y: 319
+        width: 10
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: da3c49548f904fa80800000000000000
+      internalID: -8434105240234179667
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: combo_attack_24_0.12s_57
+      rect:
+        serializedVersion: 2
+        x: 651
+        y: 255
+        width: 222
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e776605a6d668b930800000000000000
+      internalID: 4159187327954347902
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: combo_attack_24_0.12s_58
+      rect:
+        serializedVersion: 2
+        x: 555
+        y: 295
+        width: 6
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 101bae45c921c0c30800000000000000
+      internalID: 4326853804645069057
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: combo_attack_24_0.12s_59
+      rect:
+        serializedVersion: 2
+        x: 447
+        y: 251
+        width: 46
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2b095e24635c357e0800000000000000
+      internalID: -1777860591039967054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: combo_attack_24_0.12s_60
+      rect:
+        serializedVersion: 2
+        x: 495
+        y: 251
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 01503ad174d063e80800000000000000
+      internalID: -8199351472490347248
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: combo_attack_24_0.12s_61
+      rect:
+        serializedVersion: 2
+        x: 603
+        y: 255
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ea0f6327ea167a150800000000000000
+      internalID: 5883778840051249326
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: combo_attack_24_0.12s_62
+      rect:
+        serializedVersion: 2
+        x: 615
+        y: 255
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: af8341c5acbe160f0800000000000000
+      internalID: -1125359177505163014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: combo_attack_24_0.12s_63
+      rect:
+        serializedVersion: 2
+        x: 627
+        y: 255
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db6996f21fc168f60800000000000000
+      internalID: 8036142407297373885
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: combo_attack_24_0.12s_64
+      rect:
+        serializedVersion: 2
+        x: 639
+        y: 255
+        width: 10
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0312f7a0cc06e6a20800000000000000
+      internalID: 3057487626496844080
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      combo_attack_24_0.12s_0: -5384718867153784827
+      combo_attack_24_0.12s_1: 8689209493971557569
+      combo_attack_24_0.12s_10: 3220184054614682750
+      combo_attack_24_0.12s_11: -4105815273824063728
+      combo_attack_24_0.12s_12: -5047049913739206880
+      combo_attack_24_0.12s_13: -4073644307230994274
+      combo_attack_24_0.12s_14: -699894218147225273
+      combo_attack_24_0.12s_15: -8113545962419427569
+      combo_attack_24_0.12s_16: 2760664522922808701
+      combo_attack_24_0.12s_17: 7087425848508072924
+      combo_attack_24_0.12s_18: 2251143203369446605
+      combo_attack_24_0.12s_19: 1837858503654036668
+      combo_attack_24_0.12s_2: 7329203708732118868
+      combo_attack_24_0.12s_20: 2620827855053802070
+      combo_attack_24_0.12s_21: -3613906292728461311
+      combo_attack_24_0.12s_22: -3069714034319633575
+      combo_attack_24_0.12s_23: -387024681104192667
+      combo_attack_24_0.12s_24: -7749159825070710726
+      combo_attack_24_0.12s_25: 8810351803179575716
+      combo_attack_24_0.12s_26: 8005602729765990658
+      combo_attack_24_0.12s_27: -4547881476064933753
+      combo_attack_24_0.12s_28: 5572818283216019876
+      combo_attack_24_0.12s_29: -5785592571539984892
+      combo_attack_24_0.12s_3: 866855768687717945
+      combo_attack_24_0.12s_30: 4508182954243459030
+      combo_attack_24_0.12s_31: -2931784035591064537
+      combo_attack_24_0.12s_32: -4119771884477098607
+      combo_attack_24_0.12s_33: -6786463007472645033
+      combo_attack_24_0.12s_34: -1403799341249004867
+      combo_attack_24_0.12s_35: -688169543600655605
+      combo_attack_24_0.12s_36: 9104743878207113625
+      combo_attack_24_0.12s_37: -891679602325017517
+      combo_attack_24_0.12s_38: -9093873900750970003
+      combo_attack_24_0.12s_39: -5045118531051212724
+      combo_attack_24_0.12s_4: 5195914540724789228
+      combo_attack_24_0.12s_40: -8374863192725461501
+      combo_attack_24_0.12s_41: -916735002145068918
+      combo_attack_24_0.12s_42: -3868151735817390272
+      combo_attack_24_0.12s_43: 4668011742602017368
+      combo_attack_24_0.12s_44: -6166194470097759652
+      combo_attack_24_0.12s_45: -1530328058764199886
+      combo_attack_24_0.12s_46: -331222602313709905
+      combo_attack_24_0.12s_47: -5495012557411680598
+      combo_attack_24_0.12s_48: 4405808890959861298
+      combo_attack_24_0.12s_49: -3607836904851268322
+      combo_attack_24_0.12s_5: -8174819133922401123
+      combo_attack_24_0.12s_50: -5223989661252049768
+      combo_attack_24_0.12s_51: 2144732270809377686
+      combo_attack_24_0.12s_52: 4950174343806516685
+      combo_attack_24_0.12s_53: 2887382760577841244
+      combo_attack_24_0.12s_54: 6229375641234146042
+      combo_attack_24_0.12s_55: 6712822565799042818
+      combo_attack_24_0.12s_56: -8434105240234179667
+      combo_attack_24_0.12s_57: 4159187327954347902
+      combo_attack_24_0.12s_58: 4326853804645069057
+      combo_attack_24_0.12s_59: -1777860591039967054
+      combo_attack_24_0.12s_6: 5488439090311162216
+      combo_attack_24_0.12s_60: -8199351472490347248
+      combo_attack_24_0.12s_61: 5883778840051249326
+      combo_attack_24_0.12s_62: -1125359177505163014
+      combo_attack_24_0.12s_63: 8036142407297373885
+      combo_attack_24_0.12s_64: 3057487626496844080
+      combo_attack_24_0.12s_7: 1879668993937176178
+      combo_attack_24_0.12s_8: 1295578098370082345
+      combo_attack_24_0.12s_9: 2429901107599779323
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

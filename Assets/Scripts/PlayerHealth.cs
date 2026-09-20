@@ -21,6 +21,7 @@ namespace EpsilonGame
         private int currentHealth;
         private bool isDead;
         private bool isInvincible;
+        private bool isComboInvincible;
         private float invincibleTimer;
         private float knockbackTimer;
         private Color originalColor;
@@ -72,9 +73,17 @@ namespace EpsilonGame
             }
         }
 
+        /// <summary>
+        /// 그랩/콤보 연출 중 강제 무적 설정 (타이머 없이, PlayerCombat이 해제)
+        /// </summary>
+        public void SetComboInvincible(bool state)
+        {
+            isComboInvincible = state;
+        }
+
         public void TakeDamage(int amount, Vector2 direction, float knockback)
         {
-            if (isDead || isInvincible) return;
+            if (isDead || isInvincible || isComboInvincible) return;
 
             currentHealth = Mathf.Max(0, currentHealth - amount);
             OnHealthChanged?.Invoke(currentHealth, maxHealth);

@@ -1,0 +1,910 @@
+fileFormatVersion: 2
+guid: 5c82031ebea31d54c918f0f44968d5ab
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 7601292559237406739
+    second: Fantasy Decore_0
+  - first:
+      213: -3555014023478105723
+    second: Fantasy Decore_1
+  - first:
+      213: 6145777563704480579
+    second: Fantasy Decore_2
+  - first:
+      213: -8215610008855571703
+    second: Fantasy Decore_3
+  - first:
+      213: 9009478676990766180
+    second: Fantasy Decore_4
+  - first:
+      213: 1522835871747008080
+    second: Fantasy Decore_5
+  - first:
+      213: 5958928221354973061
+    second: Fantasy Decore_6
+  - first:
+      213: -576604793013300482
+    second: Fantasy Decore_7
+  - first:
+      213: -2643319697780520760
+    second: Fantasy Decore_8
+  - first:
+      213: -7126800723563428139
+    second: Fantasy Decore_9
+  - first:
+      213: 4333551791023851345
+    second: Fantasy Decore_10
+  - first:
+      213: -3064040043829703665
+    second: Fantasy Decore_11
+  - first:
+      213: -8104411815442513498
+    second: Fantasy Decore_12
+  - first:
+      213: 7044499408882265607
+    second: Fantasy Decore_13
+  - first:
+      213: -4320270076233488722
+    second: Fantasy Decore_14
+  - first:
+      213: -4311204712358581497
+    second: Fantasy Decore_15
+  - first:
+      213: -8181996805573010217
+    second: Fantasy Decore_16
+  - first:
+      213: -3922696798161683449
+    second: Fantasy Decore_17
+  - first:
+      213: 6390932517654837693
+    second: Fantasy Decore_18
+  - first:
+      213: 2712648834317355751
+    second: Fantasy Decore_19
+  - first:
+      213: 4018969668771696592
+    second: Fantasy Decore_20
+  - first:
+      213: 4732729862620766048
+    second: Fantasy Decore_21
+  - first:
+      213: -5355796433513584890
+    second: Fantasy Decore_22
+  - first:
+      213: -7873783890710950803
+    second: Fantasy Decore_23
+  - first:
+      213: 7338893601727776812
+    second: Fantasy Decore_24
+  - first:
+      213: -2597391251650439182
+    second: Fantasy Decore_25
+  - first:
+      213: 6446918134818351740
+    second: Fantasy Decore_26
+  - first:
+      213: -4328161317569855138
+    second: Fantasy Decore_27
+  - first:
+      213: -9033987878083719899
+    second: Fantasy Decore_28
+  - first:
+      213: 352489060113002946
+    second: Fantasy Decore_29
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Fantasy Decore_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 138
+        width: 97
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3106a2b2f473d7960800000000000000
+      internalID: 7601292559237406739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fantasy Decore_1
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 175
+        width: 8
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5892e07b49d0aaec0800000000000000
+      internalID: -3555014023478105723
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fantasy Decore_2
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 175
+        width: 9
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 343db29e1203a4550800000000000000
+      internalID: 6145777563704480579
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fantasy Decore_3
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 175
+        width: 18
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9031501a93a4cfd80800000000000000
+      internalID: -8215610008855571703
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fantasy Decore_4
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 175
+        width: 14
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 46cad795f19180d70800000000000000
+      internalID: 9009478676990766180
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fantasy Decore_5
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 175
+        width: 13
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 056e3b23823322510800000000000000
+      internalID: 1522835871747008080
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fantasy Decore_6
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 175
+        width: 14
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 587d9e345ad52b250800000000000000
+      internalID: 5958928221354973061
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fantasy Decore_7
+      rect:
+        serializedVersion: 2
+        x: 175
+        y: 175
+        width: 18
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ef297a8eefc7ff7f0800000000000000
+      internalID: -576604793013300482
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fantasy Decore_8
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 175
+        width: 17
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8c8cff16dba015bd0800000000000000
+      internalID: -2643319697780520760
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fantasy Decore_9
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 175
+        width: 11
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d641075084881d90800000000000000
+      internalID: -7126800723563428139
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fantasy Decore_10
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 175
+        width: 10
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1570cbfc46ed32c30800000000000000
+      internalID: 4333551791023851345
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fantasy Decore_11
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 175
+        width: 16
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f0c45f960d75a75d0800000000000000
+      internalID: -3064040043829703665
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fantasy Decore_12
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 143
+        width: 79
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a102139468578f80800000000000000
+      internalID: -8104411815442513498
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fantasy Decore_13
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 159
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 70e60e693e613c160800000000000000
+      internalID: 7044499408882265607
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fantasy Decore_14
+      rect:
+        serializedVersion: 2
+        x: 175
+        y: 143
+        width: 47
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ea66a5461415b04c0800000000000000
+      internalID: -4320270076233488722
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fantasy Decore_15
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 159
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 70b60e5e7268b24c0800000000000000
+      internalID: -4311204712358581497
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fantasy Decore_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 130
+        width: 14
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7dc90726145b37e80800000000000000
+      internalID: -8181996805573010217
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fantasy Decore_17
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 133
+        width: 31
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 70cb200ab08cf89c0800000000000000
+      internalID: -3922696798161683449
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fantasy Decore_18
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 143
+        width: 33
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db93f42a34721b850800000000000000
+      internalID: 6390932517654837693
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fantasy Decore_19
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 47
+        width: 49
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7ea0dd91eb345a520800000000000000
+      internalID: 2712648834317355751
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fantasy Decore_20
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 127
+        width: 16
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0dfc43ece9f36c730800000000000000
+      internalID: 4018969668771696592
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fantasy Decore_21
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 111
+        width: 30
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 06fd4672cb80ea140800000000000000
+      internalID: 4732729862620766048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fantasy Decore_22
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 111
+        width: 31
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6076e1b15836ca5b0800000000000000
+      internalID: -5355796433513584890
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fantasy Decore_23
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 111
+        width: 33
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d6c0bfbb443bab290800000000000000
+      internalID: -7873783890710950803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fantasy Decore_24
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 111
+        width: 33
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c280f5ff8dcf8d560800000000000000
+      internalID: 7338893601727776812
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fantasy Decore_25
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 111
+        width: 31
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f71bae0b6634fbd0800000000000000
+      internalID: -2597391251650439182
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fantasy Decore_26
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 79
+        width: 65
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c7a2fd9e2ed087950800000000000000
+      internalID: 6446918134818351740
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fantasy Decore_27
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 0
+        width: 78
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e5189a796384fe3c0800000000000000
+      internalID: -4328161317569855138
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fantasy Decore_28
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 79
+        width: 32
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 52d82a593e3d0a280800000000000000
+      internalID: -9033987878083719899
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fantasy Decore_29
+      rect:
+        serializedVersion: 2
+        x: 194
+        y: 0
+        width: 56
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c13f3fbeea44e400800000000000000
+      internalID: 352489060113002946
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Fantasy Decore_0: 7601292559237406739
+      Fantasy Decore_1: -3555014023478105723
+      Fantasy Decore_10: 4333551791023851345
+      Fantasy Decore_11: -3064040043829703665
+      Fantasy Decore_12: -8104411815442513498
+      Fantasy Decore_13: 7044499408882265607
+      Fantasy Decore_14: -4320270076233488722
+      Fantasy Decore_15: -4311204712358581497
+      Fantasy Decore_16: -8181996805573010217
+      Fantasy Decore_17: -3922696798161683449
+      Fantasy Decore_18: 6390932517654837693
+      Fantasy Decore_19: 2712648834317355751
+      Fantasy Decore_2: 6145777563704480579
+      Fantasy Decore_20: 4018969668771696592
+      Fantasy Decore_21: 4732729862620766048
+      Fantasy Decore_22: -5355796433513584890
+      Fantasy Decore_23: -7873783890710950803
+      Fantasy Decore_24: 7338893601727776812
+      Fantasy Decore_25: -2597391251650439182
+      Fantasy Decore_26: 6446918134818351740
+      Fantasy Decore_27: -4328161317569855138
+      Fantasy Decore_28: -9033987878083719899
+      Fantasy Decore_29: 352489060113002946
+      Fantasy Decore_3: -8215610008855571703
+      Fantasy Decore_4: 9009478676990766180
+      Fantasy Decore_5: 1522835871747008080
+      Fantasy Decore_6: 5958928221354973061
+      Fantasy Decore_7: -576604793013300482
+      Fantasy Decore_8: -2643319697780520760
+      Fantasy Decore_9: -7126800723563428139
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
