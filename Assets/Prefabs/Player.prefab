@@ -82,7 +82,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -5417744611106099931, guid: a04bcfbf862fea9428dce39d5e53ed39, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a04bcfbf862fea9428dce39d5e53ed39, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -227,7 +227,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 4429031454452610896, guid: c422f6fec415db748b042326cb6cc881, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c422f6fec415db748b042326cb6cc881, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -340,7 +340,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -1
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -4756028443593143600, guid: 0916d8a321a10bd48aec644f5123d979, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0916d8a321a10bd48aec644f5123d979, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -463,7 +463,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 5535499066206900110, guid: cd03985306bd2b341be8ea0afb94a52d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: cd03985306bd2b341be8ea0afb94a52d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -577,7 +577,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 443757619012365932, guid: ae16004da6be39d47868f4ea77faef3f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ae16004da6be39d47868f4ea77faef3f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -691,7 +691,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 5216528133482441851, guid: 7bbad05c96f9d7240b33a2e2eaa1b36e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7bbad05c96f9d7240b33a2e2eaa1b36e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -819,7 +819,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 585449240999813856, guid: 8d77f21adaf76f649b9ea0925d2ffec6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8d77f21adaf76f649b9ea0925d2ffec6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -925,7 +925,7 @@ MonoBehaviour:
   dashLeapSpeed: 10.86
   dashFastSpeed: 8.62
   dashDecelSpeed: 1.57
-  dashDuration: 0.2
+  dashDuration: 0.84
   dashCooldown: 0.6
   parryRetreatFastTime: 0.04
   parryRetreatFastSpeed: 8.5

@@ -204,7 +204,7 @@ namespace EpsilonGame
         // 일반/콤보 공통 판정 + VFX (기존 로직과 동일)
         private void ResolveAttackHits()
         {
-            Vector2 attackPosition = (Vector2)attackPoint.position + attackOffset * Mathf.Sign(transform.localScale.x);
+            Vector2 attackPosition = (Vector2)attackPoint.position + attackOffset * -Mathf.Sign(transform.localScale.x);
             Collider2D[] hits = Physics2D.OverlapCircleAll(attackPosition, attackRange, enemyLayer);
 
             foreach (var hit in hits)
@@ -220,7 +220,7 @@ namespace EpsilonGame
             // VFX 재생 (null 허용) - 공격 방향 전달
             if (vfxSlot != null)
             {
-                Vector2 attackDir = new Vector2(Mathf.Sign(transform.localScale.x), 0f);
+                Vector2 attackDir = new Vector2(-Mathf.Sign(transform.localScale.x), 0f);
                 vfxSlot.SpawnSlashEffect(attackDir);
             }
         }
@@ -358,7 +358,7 @@ namespace EpsilonGame
         // 전방 GrabHitbox에서 생존 적 검색
         private GameObject FindGrabTarget()
         {
-            Vector2 grabPosition = (Vector2)attackPoint.position + attackOffset * Mathf.Sign(transform.localScale.x);
+            Vector2 grabPosition = (Vector2)attackPoint.position + attackOffset * -Mathf.Sign(transform.localScale.x);
             Collider2D[] hits = Physics2D.OverlapCircleAll(grabPosition, grabRange, enemyLayer);
 
             foreach (var hit in hits)
@@ -451,7 +451,7 @@ namespace EpsilonGame
         {
             if (attackPoint != null)
             {
-                Vector2 pos = (Vector2)attackPoint.position + attackOffset * Mathf.Sign(transform.localScale.x);
+                Vector2 pos = (Vector2)attackPoint.position + attackOffset * -Mathf.Sign(transform.localScale.x);
 
                 Gizmos.color = Color.red;
                 Gizmos.DrawWireSphere(pos, attackRange);

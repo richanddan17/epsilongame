@@ -3,7 +3,7 @@
   "mcp": {
     "unity": {
       "type": "local",
-      "command": ["C:\\Users\\midme\\AppData\\Local\\Unity\\bin\\unity.exe", "mcp"],
+      "command": ["C:\\Users\\user\\AppData\\Local\\Unity\\bin\\unity.exe", "mcp"],
       "enabled": true,
       "environment": {}
     }

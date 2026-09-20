@@ -131,8 +131,13 @@ namespace EpsilonGame
             }
 
             // 좌우 반전 (localScale 방식 — PlayerCombat.cs 방향 판정 호환)
+            // 스프라이트 원본이 왼쪽을 보므로 오른쪽 이동 시 scale.x = -1 (좌우 반전)
+            // 기존 scale 크기 보존 (y/z는 증폭하지 않음)
             if (moveInput != 0f)
-                transform.localScale = new Vector3(Mathf.Sign(moveInput), 1f, 1f);
+            {
+                Vector3 s = transform.localScale;
+                transform.localScale = new Vector3(Mathf.Abs(s.x) * -Mathf.Sign(moveInput), s.y, s.z);
+            }
         }
 
         // 파링 후퇴 / 콤보 돌진 시작 검출 (PlayerCombat 상태 상승 에지)
@@ -206,7 +211,7 @@ namespace EpsilonGame
             isDashing = true;
             lastDashTime = Time.time;
             dashStartTime = Time.time;
-            dashDirection = Mathf.Sign(transform.localScale.x);
+            dashDirection = -Mathf.Sign(transform.localScale.x);
             rb.gravityScale = 0f;
 
             if (dashFx != null)
@@ -224,7 +229,7 @@ namespace EpsilonGame
             }
             else if (t < dashCrouchTime + dashLeapTime)
             {
-                rb.linearVelocity = new Vector2(dashLeapSpeed * dir, dashLeapSpeed); // 도약: 앞+위
+                rb.linearVelocity = new Vector2(dashLeapSpeed * dir, 0f);
             }
             else if (t < dashCrouchTime + dashLeapTime + dashFastTime)
             {
@@ -246,7 +251,7 @@ namespace EpsilonGame
         private void ApplyParryRetreatVelocity()
         {
             float t = Time.time - parryRetreatStartTime;
-            float dir = -Mathf.Sign(transform.localScale.x);
+            float dir = Mathf.Sign(transform.localScale.x);
 
             float vx = 0f;
             if (t < parryRetreatFastTime)
@@ -261,7 +266,7 @@ namespace EpsilonGame
         private void ApplyComboDashVelocity()
         {
             float t = Time.time - comboDashStartTime;
-            float dir = Mathf.Sign(transform.localScale.x);
+            float dir = -Mathf.Sign(transform.localScale.x);
 
             float vx = 0f;
             if (t < comboDashFastTime)
