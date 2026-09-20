@@ -9,11 +9,14 @@ namespace EpsilonGame
         [Header("Movement")]
         [SerializeField] private float moveSpeed = 2f;              // guide: 걷기 직접 결정 (추천 1.5~2)
         [SerializeField] private float airMoveSpeed = 2.5f;         // guide: 공중 이동 2.3~2.8
-        [SerializeField] private float jumpVelocity = 6.63f;        // 최고점 +1.1 @ g=-20 (guide v6.3/g18 환산)
-        [SerializeField] private float doubleJumpVelocity = 5.06f;  // 이단 추가 +0.64 @ g=-20 (guide v≈6 환산)
+
+        [Header("Jump (거리 = 최고 도달 높이, v=√(2·g·h) 자동 계산)")]
+        [SerializeField] private float jumpHeight = 3f;             // 한 번 점프 최고 상승 높이 (world units)
+        [SerializeField] private float doubleJumpHeight = 2f;       // 이단 점프 추가 상승 높이 (world units)
         [SerializeField] private float maxJumps = 2f;
 
-        [Header("Dash (guide: 0.14 웅크림 / 0.07 도약 / 0.21 고속 / 0.42 감속)")]
+        [Header("Dash (거리 = 총 전진 거리, 위상별 속도 자동 스케일)")]
+        [SerializeField] private float dashDistance = 6f;           // 대시 총 이동 거리 (기존 3.23 → 6)
         [SerializeField] private float dashCrouchTime = 0.14f;
         [SerializeField] private float dashLeapTime = 0.07f;
         [SerializeField] private float dashFastTime = 0.21f;
@@ -67,6 +70,9 @@ namespace EpsilonGame
         private float dashStartTime;
         private float lastDashTime = -999f;
         private float defaultGravityScale = 1f;
+        private float dashSpeedScale = 1f;
+        private float jumpVelocity;
+        private float doubleJumpVelocity;
 
         // 파링/콤보 모션 상태 (IsParrying은 PlayerCombat에서 파링 모션 기반으로 재정의됨)
         private bool wasParrying;
@@ -83,6 +89,17 @@ namespace EpsilonGame
             playerHealth = GetComponent<PlayerHealth>();
             playerCombat = GetComponent<PlayerCombat>();
             defaultGravityScale = rb.gravityScale;
+
+            // 점프: v = sqrt(2·g·h) (g = 중력 × gravityScale) — 목표 높이에서 초기 속도 계산
+            float g = Mathf.Abs(Physics2D.gravity.y) * defaultGravityScale;
+            jumpVelocity = Mathf.Sqrt(2f * g * Mathf.Max(0f, jumpHeight));
+            doubleJumpVelocity = Mathf.Sqrt(2f * g * Mathf.Max(0f, doubleJumpHeight));
+
+            // 대시: 위상별 거리 합 대비 dashDistance 비율로 속도 스케일 (시간 구조 유지)
+            float baseDashDistance = dashLeapSpeed * dashLeapTime
+                + dashFastSpeed * dashFastTime
+                + dashDecelSpeed * Mathf.Max(0f, dashDuration - dashCrouchTime - dashLeapTime - dashFastTime);
+            dashSpeedScale = baseDashDistance > 0f ? dashDistance / baseDashDistance : 1f;
         }
 
         // Input 읽기는 Update에서 (render rate, 카메라 끊김 방지!)
@@ -229,15 +246,15 @@ namespace EpsilonGame
             }
             else if (t < dashCrouchTime + dashLeapTime)
             {
-                rb.linearVelocity = new Vector2(dashLeapSpeed * dir, 0f);
+                rb.linearVelocity = new Vector2(dashLeapSpeed * dashSpeedScale * dir, 0f);
             }
             else if (t < dashCrouchTime + dashLeapTime + dashFastTime)
             {
-                rb.linearVelocity = new Vector2(dashFastSpeed * dir, 0f); // 고속 전진, 높이 유지
+                rb.linearVelocity = new Vector2(dashFastSpeed * dashSpeedScale * dir, 0f); // 고속 전진, 높이 유지
             }
             else
             {
-                rb.linearVelocity = new Vector2(dashDecelSpeed * dir, 0f); // 감속
+                rb.linearVelocity = new Vector2(dashDecelSpeed * dashSpeedScale * dir, 0f); // 감속
             }
         }
 
