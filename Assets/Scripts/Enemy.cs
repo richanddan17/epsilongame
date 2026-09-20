@@ -45,9 +45,16 @@ namespace EpsilonGame
         [SerializeField] private float attackCooldown = 2f;
         [SerializeField] private float telegraphTime = 0.5f;
 
+        private Vector2 baseAttackOffset;
         private float attackCooldownTimer;
         private float telegraphTimer;
         private bool hasAttackHitFired;
+
+        // ===== Movement =====
+        [Header("Movement")]
+        [SerializeField] private float moveSpeed = 1.5f;
+
+        private int facing = 1; // 1 = 오른쪽, -1 = 왼쪽
 
         // ===== Stun / Penalty =====
         [Header("Stun / Penalty")]
@@ -65,6 +72,7 @@ namespace EpsilonGame
 
         // ===== Components =====
         private Rigidbody2D rb;
+        private Animator animator;
         private SpriteRenderer spriteRenderer;
         private Color originalColor;
 
@@ -75,9 +83,11 @@ namespace EpsilonGame
         private void Awake()
         {
             rb = GetComponent<Rigidbody2D>();
+            animator = GetComponent<Animator>();
             spriteRenderer = GetComponent<SpriteRenderer>();
             originalColor = spriteRenderer.color;
             currentHealth = maxHealth;
+            baseAttackOffset = attackOffset;
         }
 
         private void OnEnable()
@@ -127,7 +137,29 @@ namespace EpsilonGame
 
         private void FixedUpdate()
         {
-            // 물리 관련 로직이 필요하면 여기에 (현재는 상태 머신만 Update에서 처리)
+            if (rb == null) return;
+
+            // Detected 상태에서 플레이어를 향해 걸어감 (Idle/그 외 상태는 정지)
+            float horizontal = 0f;
+            if (currentState == EnemyState.Detected && playerTransform != null)
+            {
+                float dir = Mathf.Sign(playerTransform.position.x - transform.position.x);
+                facing = dir >= 0f ? 1 : -1;
+                horizontal = dir * moveSpeed;
+            }
+
+            rb.linearVelocity = new Vector2(horizontal, rb.linearVelocity.y);
+
+            if (Mathf.Abs(horizontal) > 0.01f)
+            {
+                Vector3 s = transform.localScale;
+                transform.localScale = new Vector3(Mathf.Abs(s.x) * facing, s.y, s.z);
+            }
+
+            if (animator != null)
+            {
+                animator.SetBool("IsMoving", Mathf.Abs(horizontal) > 0.01f);
+            }
         }
 
         // ===== State Machine Logic =====
@@ -210,28 +242,31 @@ namespace EpsilonGame
         private void UpdateAttackingState()
         {
             // 공격 판정: Physics2D.OverlapCircle로 Player 레이어(7) 감지
-            Vector2 attackCenter = (Vector2)transform.position + attackOffset;
+            Vector2 attackCenter = (Vector2)transform.position + baseAttackOffset * facing;
             Collider2D hit = Physics2D.OverlapCircle(attackCenter, attackRange, playerLayer);
 
-            if (hit != null && !hasAttackHitFired)
+            if (!hasAttackHitFired)
             {
                 hasAttackHitFired = true;
 
-                // 이벤트 발화: 공격 판정 순간
-                CombatEvents.RaiseOnEnemyAttackHit(gameObject);
-
-                // PlayerHealth.TakeDamage 호출 (IEpsilonDamagable 구현체)
-                var damagable = hit.GetComponent<IEpsilonDamagable>();
-                if (damagable != null)
+                if (hit != null)
                 {
-                    Vector2 knockbackDir = (hit.transform.position - transform.position).normalized;
-                    damagable.TakeDamage(attackDamage, knockbackDir, 8f);
-                }
+                    // 이벤트 발화: 공격 판정 순간
+                    CombatEvents.RaiseOnEnemyAttackHit(gameObject);
 
-                // 공격 후 Idle로 복귀 (쿨다운 시작)
-                attackCooldownTimer = attackCooldown;
-                TransitionToIdle();
+                    // PlayerHealth.TakeDamage 호출 (IEpsilonDamagable 구현체)
+                    var damagable = hit.GetComponent<IEpsilonDamagable>();
+                    if (damagable != null)
+                    {
+                        Vector2 knockbackDir = (hit.transform.position - transform.position).normalized;
+                        damagable.TakeDamage(attackDamage, knockbackDir, 8f);
+                    }
+                }
             }
+
+            // 공격 동작 완료 → Idle 복귀 (빗나가도 진행) 후 Detected에서 추적 재개
+            attackCooldownTimer = attackCooldown;
+            TransitionToIdle();
         }
 
         // ===== State Transitions =====
@@ -347,6 +382,11 @@ namespace EpsilonGame
             hasAttackHitFired = false;
             playerTransform = null;
 
+            if (animator != null)
+            {
+                animator.SetBool("IsMoving", false);
+            }
+
             // 시각적 복원
             if (spriteRenderer != null)
             {
@@ -366,7 +406,7 @@ namespace EpsilonGame
 
             // 공격 범위
             Gizmos.color = Color.red;
-            Vector2 attackCenter = (Vector2)transform.position + attackOffset;
+            Vector2 attackCenter = (Vector2)transform.position + baseAttackOffset * facing;
             Gizmos.DrawWireSphere(attackCenter, attackRange);
         }
     }
