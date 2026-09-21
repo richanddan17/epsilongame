@@ -274,6 +274,13 @@ namespace EpsilonGame
         {
             currentState = EnemyState.Idle;
             hasAttackHitFired = false;
+
+            if (animator != null)
+            {
+                animator.SetBool("Attack", false);
+                animator.SetBool("GotHit", false);
+                animator.SetBool("Dead", false);
+            }
         }
 
         private void TransitionToDetected()

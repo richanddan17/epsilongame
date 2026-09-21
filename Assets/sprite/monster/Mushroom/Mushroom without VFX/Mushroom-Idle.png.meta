@@ -1,34 +1,28 @@
 fileFormatVersion: 2
-guid: fcfe8067d239dd947851b9dde681703b
+guid: 7a63d19f0135eeb4bb3f545f92132359
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3250092666108690692
-    second: HP_HUD_0
+      213: -654737500350741434
+    second: Mushroom-Idle_0
   - first:
-      213: -3872128514655929897
-    second: HP_HUD_1
+      213: -7095357931098475539
+    second: Mushroom-Idle_1
   - first:
-      213: 8421243238684252985
-    second: HP_HUD_2
+      213: 2163288782968092727
+    second: Mushroom-Idle_2
   - first:
-      213: 4151250664215791542
-    second: HP_HUD_3
+      213: -4210055123308685074
+    second: Mushroom-Idle_3
   - first:
-      213: -1290825263647320098
-    second: HP_HUD_4
+      213: -9004658040723243172
+    second: Mushroom-Idle_4
   - first:
-      213: 95977727147763610
-    second: HP_HUD_5
+      213: 920352064709726215
+    second: Mushroom-Idle_5
   - first:
-      213: -2894888466452378595
-    second: HP_HUD_6
-  - first:
-      213: -5079587934203481674
-    second: HP_HUD_7
-  - first:
-      213: -6097884905061134596
-    second: HP_HUD_8
+      213: -8565668554048287875
+    second: Mushroom-Idle_6
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -61,7 +55,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -120,216 +114,159 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: HP_HUD_0
+      name: Mushroom-Idle_0
       rect:
         serializedVersion: 2
-        x: 4
-        y: 15
-        width: 39
-        height: 16
+        x: 24
+        y: 0
+        width: 32
+        height: 34
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: cfe3d7d90f955e2d0800000000000000
-      internalID: -3250092666108690692
+      spriteID: 644877e56b7e9e6f0800000000000000
+      internalID: -654737500350741434
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: HP_HUD_1
+      name: Mushroom-Idle_1
       rect:
         serializedVersion: 2
-        x: 52
-        y: 15
-        width: 39
-        height: 16
+        x: 104
+        y: 0
+        width: 32
+        height: 33
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7d9b54f91af634ac0800000000000000
-      internalID: -3872128514655929897
+      spriteID: de3ff92fd89388d90800000000000000
+      internalID: -7095357931098475539
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: HP_HUD_2
+      name: Mushroom-Idle_2
       rect:
         serializedVersion: 2
-        x: 100
-        y: 15
-        width: 39
-        height: 16
+        x: 184
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 93b5fe0ab144ed470800000000000000
-      internalID: 8421243238684252985
+      spriteID: 738766fbfab850e10800000000000000
+      internalID: 2163288782968092727
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: HP_HUD_3
+      name: Mushroom-Idle_3
       rect:
         serializedVersion: 2
-        x: 148
-        y: 15
-        width: 39
-        height: 16
+        x: 264
+        y: 0
+        width: 32
+        height: 31
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6b7cf2e1c743c9930800000000000000
-      internalID: 4151250664215791542
+      spriteID: ee85f52db21e295c0800000000000000
+      internalID: -4210055123308685074
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: HP_HUD_4
+      name: Mushroom-Idle_4
       rect:
         serializedVersion: 2
-        x: 196
-        y: 15
-        width: 39
-        height: 16
+        x: 344
+        y: 0
+        width: 32
+        height: 31
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ed793350341161ee0800000000000000
-      internalID: -1290825263647320098
+      spriteID: c5f73de7837090380800000000000000
+      internalID: -9004658040723243172
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: HP_HUD_5
+      name: Mushroom-Idle_5
       rect:
         serializedVersion: 2
-        x: 244
-        y: 15
-        width: 39
-        height: 16
+        x: 424
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a97edfcfb3bf45100800000000000000
-      internalID: 95977727147763610
+      spriteID: 700125d935fb5cc00800000000000000
+      internalID: 920352064709726215
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: HP_HUD_6
+      name: Mushroom-Idle_6
       rect:
         serializedVersion: 2
-        x: 292
-        y: 15
-        width: 39
-        height: 16
+        x: 504
+        y: 0
+        width: 32
+        height: 33
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d1c0bbc074a43d7d0800000000000000
-      internalID: -2894888466452378595
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: HP_HUD_7
-      rect:
-        serializedVersion: 2
-        x: 340
-        y: 15
-        width: 39
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6b1f078cfada189b0800000000000000
-      internalID: -5079587934203481674
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: not_used
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 4
-        width: 289
-        height: 8
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: cfe4d90acf5ff5ba0800000000000000
-      internalID: -6097884905061134596
+      spriteID: d7bc73c35d1a02980800000000000000
+      internalID: -8565668554048287875
       vertices: []
       indices: 
       edges: []
@@ -338,7 +275,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: bb7eab1cc4672e04e9e4ea8758432de0
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -348,15 +285,13 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      HP_HUD_0: -3250092666108690692
-      HP_HUD_1: -3872128514655929897
-      HP_HUD_2: 8421243238684252985
-      HP_HUD_3: 4151250664215791542
-      HP_HUD_4: -1290825263647320098
-      HP_HUD_5: 95977727147763610
-      HP_HUD_6: -2894888466452378595
-      HP_HUD_7: -5079587934203481674
-      not_used: -6097884905061134596
+      Mushroom-Idle_0: -654737500350741434
+      Mushroom-Idle_1: -7095357931098475539
+      Mushroom-Idle_2: 2163288782968092727
+      Mushroom-Idle_3: -4210055123308685074
+      Mushroom-Idle_4: -9004658040723243172
+      Mushroom-Idle_5: 920352064709726215
+      Mushroom-Idle_6: -8565668554048287875
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
